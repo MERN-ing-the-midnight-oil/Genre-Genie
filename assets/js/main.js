@@ -110,46 +110,45 @@ function getTitleByGenre(genreString) {
 			document
 				.querySelector(".poster")
 				.children[0].children[0].setAttribute("src", posterPath);
-			console.log(
+			// console.log(
 			// 	"ABOUT TO START THE FETCH FUNCTION THAT CALLS ADVANCED MOVIE SEARCH WITH A REGULAR MOVIE ID"
 			// );
 			// getDetailedResponse(movie_id);
 		});
 }
 
-
 //stretch goal: getDetailedResponse will take the regular movie id and give a IMDB movie ID that we need for getStreamsbyIMDBId
-	// function getDetailedResponse(movie_id) {
-	// 	var detailedURL =
-	// 		"https://advanced-movie-search.p.rapidapi.com/movies/getdetails?movie_id=" +
-	// 		movie_id;
-	// 	const options3 = {
-	// 		method: "GET",
-	// 		headers: {
-	// 			"X-RapidAPI-Key": "5cec1b6fafmsh96cbe5417d10614p139e32jsn36f6496e92fe", //Jayden's limited API key
-	// 			"X-RapidAPI-Host": "advanced-movie-search.p.rapidapi.com",
-	// 		},
-	// 	};
-	// 	fetch(detailedURL, options3)
-	// 		.then(function (response) {
-	// 			if (!response.ok) {
-	// 				throw response.json();
-	// 			}
-	// 			return response.json();
-	// 		})
-	// 		.then(function (detailedObject) {
-	// 			//find the data we need in the object
-	// 			console.log(detailedObject);
-	// 			var IMDBID = detailedObject.imdb_id;
+// function getDetailedResponse(movie_id) {
+// 	var detailedURL =
+// 		"https://advanced-movie-search.p.rapidapi.com/movies/getdetails?movie_id=" +
+// 		movie_id;
+// 	const options3 = {
+// 		method: "GET",
+// 		headers: {
+// 			"X-RapidAPI-Key": "5cec1b6fafmsh96cbe5417d10614p139e32jsn36f6496e92fe", //Jayden's limited API key
+// 			"X-RapidAPI-Host": "advanced-movie-search.p.rapidapi.com",
+// 		},
+// 	};
+// 	fetch(detailedURL, options3)
+// 		.then(function (response) {
+// 			if (!response.ok) {
+// 				throw response.json();
+// 			}
+// 			return response.json();
+// 		})
+// 		.then(function (detailedObject) {
+// 			//find the data we need in the object
+// 			console.log(detailedObject);
+// 			var IMDBID = detailedObject.imdb_id;
 
-	// 			//if the IMDBID is null, then start over!
-	// 			console.log("The IMDBID IS :" + IMDBID);
-	// 			console.log(
-	// 				"ABOUT TO START THE FETCH FUNCTION THAT GETS STREAM SOURCES FROM MBDLIST USING MBDID"
-	// 			);
-	// 			getStreamsByIMDBID(IMDBID); //call the final function that gets streaming data given an IMDBID.
-	// 		});
-	// }
+// 			//if the IMDBID is null, then start over!
+// 			console.log("The IMDBID IS :" + IMDBID);
+// 			console.log(
+// 				"ABOUT TO START THE FETCH FUNCTION THAT GETS STREAM SOURCES FROM MBDLIST USING MBDID"
+// 			);
+// 			getStreamsByIMDBID(IMDBID); //call the final function that gets streaming data given an IMDBID.
+// 		});
+// }
 // function getStreamsByIMDBID(IMDBID) {
 // 	//uses Get by IMDb ID which is an option from the MDBList API (paid for by Rhys)
 // 	var getByIMDBidURL = "https://mdblist.p.rapidapi.com/?i=" + IMDBID;
