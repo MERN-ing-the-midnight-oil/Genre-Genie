@@ -60,6 +60,29 @@ function createEmptyStorage() {
 }
 createEmptyStorage(); //calls the function just created
 
+// Define a CSS class for the active state of the genre buttons
+const ACTIVE_CLASS = "active";
+
+// Add an event listener to the button container
+buttonContainerEl.addEventListener("click", (event) => {
+	const target = event.target;
+
+	// Check if the clicked element is a button within the button container
+	if (target.matches("button")) {
+		const isActive = target.classList.contains(ACTIVE_CLASS);
+
+		// Toggle the active state of the button
+		if (isActive) {
+			target.classList.remove(ACTIVE_CLASS);
+		} else {
+			target.classList.add(ACTIVE_CLASS);
+		}
+
+		// Call the grabData function with the updated active genres
+		grabData(getActiveGenres());
+	}
+});
+
 buttonContainerEl.addEventListener("click", grabData); //waits for a click on any genre button
 function grabData(event) {
 	var localGenreIds = JSON.parse(localStorage.getItem("genreIds")); // Array list of genre ids already in local storage
@@ -70,6 +93,23 @@ function grabData(event) {
 	console.log("the string in local storage: " + genreString);
 	getTitleByGenre(genreString); // Call the function to get movie titles by genre
 }
+//possible rework of grabdata to include toggling
+// function grabData(event) {
+// 	var localGenreIds = JSON.parse(localStorage.getItem("genreIds")); // Array list of genre ids already in local storage
+// 	var genreID = event.target.dataset.genreid; // Get the genre ID from the clicked button
+
+// 	var index = localGenreIds.indexOf(genreID);
+// 	if (index > -1) {
+// 	  localGenreIds.splice(index, 1); // Remove the genreID from the array
+// 	} else {
+// 	  localGenreIds.push(genreID); // Add the genreID to the array
+// 	}
+
+// 	localStorage.setItem("genreIds", JSON.stringify(localGenreIds)); // Update the genreIds in local storage
+// 	var genreString = localGenreIds.toString(); // Convert the genreIds to a string
+// 	console.log("the string in local storage: " + genreString);
+// 	getTitleByGenre(genreString); // Call the function to get movie titles by genre
+//   }
 
 //The following function calls Advanced Movie Search with the collected genre IDs
 function getTitleByGenre(genreString) {
@@ -111,7 +151,7 @@ function getTitleByGenre(genreString) {
 				.querySelector(".poster")
 				.children[0].children[0].setAttribute("src", posterPath);
 			// console.log(
-			// 	"ABOUT TO START THE FETCH FUNCTION THAT CALLS ADVANCED MOVIE SEARCH WITH A REGULAR MOVIE ID"
+			// 	"about to get detailed response, which could give information we need for the trailer url, the stretch goal"
 			// );
 			// getDetailedResponse(movie_id);
 		});

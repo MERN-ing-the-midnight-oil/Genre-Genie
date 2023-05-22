@@ -1,11 +1,10 @@
-/* main color palette */
 :root {
     --bright_red: #DC2026;
     --dark_red: #7E1616;
     --light_yellow: #FFFEAD;
     --butter: #FCC252;
     --white: #FDFCFA;
-    --grey: #C0C1C1;
+    --grey: #C0C1C1; 
     --background_color: black;
     background-color: var(--background_color);
 }
@@ -44,33 +43,8 @@ p {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 25px;
 }
-
-/* Within Nicole's */
-/* button {
-    font-size: 1.2rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /* width: 10%;  */
-    /* padding: 20px;
-    border-radius: 1.5rem; */
-    /* margin: 20px; */
-    /* color: white;
-    background-color: darkred;
-    text-align: center;
-} 
-
-button:hover { 
-    box-shadow: 0px 0px 10px maroon;
-    cursor: grab;
-}
-
-button:active {
-    background-color: red;
-} 
-button:focus{
-    background-color: red;
-} */
-
 
 /* phone size */
 @media (max-width: 992px) {
@@ -82,96 +56,71 @@ button:focus{
 
 }
 
-:root {
-    --bright_red: #dc2026;
-    --dark_red: #7e1616;
-    --light_yellow: #fffead;
-    --butter: #fcc252;
-    --white: #fdfcfa;
-    --grey: #c0c1c1;
-    --background_color: black;
-    background-color: var(--background_color);
-  }
-  
-  header {
+header {
     display: flex;
     flex-direction: column;
-  }
-  
-  h1 {
-    font-size: 350px;
-    color: var(--dark_red);
-    text-align: center;
-    font-family: "Rampart One", cursive;
-    position: relative;
-    top: -120px;
-  }
-  
-  #what-where-to-watch {
+}
+
+#what-where-to-watch {
     font-size: 30px;
-    font-family: "Fuzzy Bubbles", cursive;
+    font-family: 'Fuzzy Bubbles', cursive;
     color: var(--bright_red);
     text-align: center;
     position: relative;
     top: -200px;
-  }
-  
-  .img-responsive {
+}
+
+.img-responsive {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     position: relative;
     top: -230px;
-  }
-  
-  .click-me {
+}
+
+.click-me {
     color: #fcc252;
     font-size: 20px;
-    font-family: "Fuzzy Bubbles", cursive;
-  }
-  
-  #remote:hover {
+    font-family: 'Fuzzy Bubbles', cursive;
+}
+
+#remote:hover {
     transform: scale(1.5);
-  }
-  
-  #remote:active {
+}
+
+#remote:active {
     transform: scale(1.5);
-  }
-  
-  /* Buttons */
-  #all-buttons {
+}
+
+/* Buttons */
+#all-buttons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding: 20px;
-  }
-  
-  button {
+}
+
+button {
     font-size: 1.2rem;
-    font-family: "Fuzzy Bubbles", cursive;
-    /* width: 10%;  */
+    font-family: 'Fuzzy Bubbles', cursive;
     padding: 20px;
     border-radius: 1.5rem;
-    /* margin: 20px; */
     color: white;
     background-color: darkred;
     text-align: center;
-  }
-  
-  button:hover {
+}
+
+button:hover {
     box-shadow: 0px 0px 10px maroon;
+}
+
+button.active {
+    background-color: green  !important;
   }
-  
-  button:active {
-    background-color: red;
-  }
-  
-  button.active {
-    background-color: red;
-  }
-  
-  #streaming-avail {
+
+
+#streaming-avail {
     display: flex;
     flex-direction: row;
     text-align: center;
@@ -183,370 +132,43 @@ button:focus{
     border-color: var(--butter);
     border-width: thick;
     background-color: var(--dark_red);
-  }
-  
-  main {
+}
+
+main {
     display: none;
-  }
-  
-  #hideForNow {
-    display: none;
-  }
-  
-  .modal-content {
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #7e1616;
-    color: white;
-  }
-  
-  #modal-movie-name {
-    font-family: "Fuzzy Bubbles", cursive;
-  }
-  
-  #modal-movie-plot {
-    font-family: "Fuzzy Bubbles", cursive;
-  }
-  
-  h3 {
-    font-family: "Fuzzy Bubbles", cursive;
-    font-size: 3rem;
-  }
-  
-  #overview2 {
-    font-family: "Fuzzy Bubbles", cursive;
-  }
-  
-  #streaming-content {
-    font-family: "Fuzzy Bubbles", cursive;
-  }
-  
-  #vote-average {
-    font-family: "Fuzzy Bubbles", cursive;
-  }
-  /* experiment with toggle */
-  /* .movie-contents:before {
-      visibility: hidden;
-      background-color: rgba(126,22,22,.75);
-      color: var(--white);
-      cursor: pointer;
-      padding-top: 40px;
-      width: 275px;
-      height: 450px;
-      position:absolute;
-      top:20px;
-      left: 40.5%;
-  }
-  
-  #poster-path:hover + .movie-contents {
-      visibility: visible;
-      box-shadow: 0px 0px 10px var(--light_yellow);
-      cursor: pointer;
-  }
-  
-  #poster-path:hover + .movie-contents {
-      visibility: visible;
-      box-shadow: 0px 0px 10px var(--light_yellow);
-      cursor: pointer;
-  } */
-  
-  /* Tablet size */
-  @media (max-width: 992px) {
-    body {
-      background-color: rgb(56, 53, 53);
+}
+
+/* Desktop size */
+@media (min-width: 992px) {
+    main {
+        display: block;
     }
-    h1 {
-      font-size: 250px;
-      padding-top: 50px;
-    }
-  
-    #all-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 10px;
-    }
-  
-    button {
-      font-size: 30px;
-      font-family: "Fuzzy Bubbles", cursive;
-      padding: 10px;
-      border-radius: 1.5rem;
-      color: white;
-      background-color: darkred;
-      text-align: center;
-    }
-  
-    #original_title2 {
-      font-size: 40px;
-    }
-  
-    #close-modal {
-      background-color: black;
-    }
-    /* phone size */
-    @media (max-width: 768px) {
-      body {
-        background-color: var(--butter);
-      }
-    }
-  
-    h1 {
-      font-size: 200px;
-      padding-bottom: 10px;
-    }
-    .click-me {
-      color: black;
-    }
-  
-    #streaming-avail {
-      display: flex;
-      flex-direction: column;
-    }
-  
-    #overview2 {
-      display: flex;
-      flex-wrap: wrap;
-      padding-left: 50px;
-      padding-right: 50px;
-    }
-  
-  }
-  
-
-  :root {
-    --bright_red: #DC2026;
-    --dark_red: #7E1616;
-    --light_yellow: #FFFEAD;
-    --butter: #FCC252;
-    --white: #FDFCFA;
-    --grey: #C0C1C1; 
-    --background_color: black;
-}
-
-/* heading saved movie button */
-#saved-movie {
-    display: flex;
-    justify-content: center;
-}
-
-.save-movies {
-    position: relative;
-    top: -215px;
-}
-
-/* Buttons/Pick Genre Section */
-#all-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 25px;
-}
-
-h2 {
-    color: var(--white);
-    font-family: 'Fuzzy Bubbles', cursive;
-    font-size: 2rem;
-
-}
-
-.center {
-    position: relative;
-    display:flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    padding-top: 20px;
-}
-
-.pick-genre {
-    padding-top: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#suggest-movie-btn {
-    text-align: center;
-    font-size: 1.5rem;
-    font-family: 'Fuzzy Bubbles', cursive;
-    color: var(--white);
-    padding: 0px;
-    background-color: rgba(192, 33, 33, 0.6);
-    /* background-size: 20px; */
-    margin: 20px;
-    width: 245px;
-    z-index: 1;
-}
-
-#suggest-movie-btn:hover {
-    cursor: pointer;
-    box-shadow: 0px 0px 5px var(--light_yellow);
-}
-
-#film-img {
-    display: inline;
-    position: absolute;
-    /* left: 568px; */
-    top: -16px;
-    z-index: -1;
-    min-width: 300px;
-}
-
-button {
-    font-size: 1.2rem;
-    font-family:'Fuzzy Bubbles', cursive;
-    color: var(--white);
-    /* width: 15%;  */
-    padding: 15px;
-    border-radius: 3rem;
-    border-width: 0px;
-    background-color: var(--dark_red);
-    text-align: center;
-    margin: 20px;
-} 
-
-button:hover { 
-    box-shadow: 0px 0px 10px var(--light_yellow);
-    cursor: grab;
-}
-
-button:active {
-    background-color: red;
-} 
-
-button:focus{
-    background-color: red;
-}
-
-#clear-local-storage {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color: var(--white);
-    font-size: .75rem;
-    width: 7%;
-    padding: 5px;
-    margin: 0px;
-}
-
-
-/* complete movie poster information */
-.poster-section {
-    padding-top: 100px;
-}
-
-.poster {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    position: relative;
-}
-
-#poster-path {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.movie-contents {
-    visibility: hidden;
-    background-color: rgba(126,22,22,.75);
-    color: var(--white);
-    cursor: pointer;
-    padding-top: 40px;
-    width: 275px;
-    height: 450px;
-    position:absolute;
-    top: 5px;
-    left: 40.5%;
-}
-
-#poster-path:hover + .movie-contents {
-    visibility: visible;
-    box-shadow: 0px 0px 10px var(--light_yellow);
-    cursor: pointer;
-}
-
-.poster-btns {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    padding-left: 25%;
-    padding-right: 25%;
-}
-
-#new-movie,
-#watch-movie {
-    padding: 10px;
-    text-align:center;
-    width: 28%;
-}
-
-#reset-btn {
-    color: var(--bright_red);
-    font-family: 'Fuzzy Bubbles', cursive;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    padding-top: 20px;
-    padding-bottom: 10px;
-    text-decoration: underline;
-}
-
-/* Streaming Availability information */
-
-.movie-information {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: var(--white);
-}
-
-#movie-about,
-#streaming-content {
-    width: 500px;
-    height: 450px;
-}
-
-#streaming-content {
-    color: var(--white);
-    text-decoration: underline;
-}
-
-#streaming-content:hover {
-    color: var(--butter);
-}
-
-
-.movie-save-btns {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.start-over-btn {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-#Start-over {
-    width: 10%;
-    font-size: 16px;
-}
-
-
-
-/* phone size */
-@media (max-width: 992px) {
-
 }
 
 /* Tablet size */
 @media (max-width: 768px) {
-
+    h1 {
+        font-size: 200px;
+    }
+    h2 {
+        font-size: 24px;
+    }
+    p {
+        font-size: 0.8rem;
+    }
 }
+
+/* Mobile size */
+@media (max-width: 576px) {
+    h1 {
+        font-size: 150px;
+    }
+    h2 {
+        font-size: 20px;
+    }
+    p {
+        font-size: 0.7rem;
+    }
+}
+
+
