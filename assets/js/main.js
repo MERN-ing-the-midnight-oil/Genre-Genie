@@ -111,80 +111,83 @@ function getTitleByGenre(genreString) {
 				.querySelector(".poster")
 				.children[0].children[0].setAttribute("src", posterPath);
 			console.log(
-				"ABOUT TO START THE FETCH FUNCTION THAT CALLS ADVANCED MOVIE SEARCH WITH A REGULAR MOVIE ID"
-			);
-			getDetailedResponse(movie_id);
+			// 	"ABOUT TO START THE FETCH FUNCTION THAT CALLS ADVANCED MOVIE SEARCH WITH A REGULAR MOVIE ID"
+			// );
+			// getDetailedResponse(movie_id);
 		});
 }
-//getDetailedResponse will take the regular movie id and give a IMDB movie ID that we need for getStreamsbyIMDBId
-function getDetailedResponse(movie_id) {
-	var detailedURL =
-		"https://advanced-movie-search.p.rapidapi.com/movies/getdetails?movie_id=" +
-		movie_id;
-	const options3 = {
-		method: "GET",
-		headers: {
-			"X-RapidAPI-Key": "5cec1b6fafmsh96cbe5417d10614p139e32jsn36f6496e92fe", //Jayden's limited API key
-			"X-RapidAPI-Host": "advanced-movie-search.p.rapidapi.com",
-		},
-	};
-	fetch(detailedURL, options3)
-		.then(function (response) {
-			if (!response.ok) {
-				throw response.json();
-			}
-			return response.json();
-		})
-		.then(function (detailedObject) {
-			//find the data we need in the object
-			console.log(detailedObject);
-			var IMDBID = detailedObject.imdb_id;
 
-			//if the IMDBID is null, then start over!
-			console.log("The IMDBID IS :" + IMDBID);
-			console.log(
-				"ABOUT TO START THE FETCH FUNCTION THAT GETS STREAM SOURCES FROM MBDLIST USING MBDID"
-			);
-			getStreamsByIMDBID(IMDBID); //call the final function that gets streaming data given an IMDBID.
-		});
-}
-function getStreamsByIMDBID(IMDBID) {
-	//uses Get by IMDb ID which is an option from the MDBList API (paid for by Rhys)
-	var getByIMDBidURL = "https://mdblist.p.rapidapi.com/?i=" + IMDBID;
-	//console.log(getByIMDBidURL+"is the ImbdIdURL");
-	const options = {
-		method: "GET",
-		headers: {
-			"X-RapidAPI-Key": "5cec1b6fafmsh96cbe5417d10614p139e32jsn36f6496e92fe", //Jayden's limited API key
-			"X-RapidAPI-Host": "mdblist.p.rapidapi.com",
-		},
-	};
-	fetch(getByIMDBidURL, options)
-		.then(function (response) {
-			if (!response.ok) {
-				throw response.json();
-			}
-			return response.json();
-		})
-		.then(function (imdbObject) {
-			//if the imdbObject is not an object for some weird (but weirdly frequent) reason, maybe start over with getTitleByGenre
 
-			var trailerPath = (document.querySelector(
-				"#streaming-content"
-			).textContent = "Click to Watch Trailer");
-			console.log(trailerPath);
-			document.querySelector("#streaming-content").textContent = trailerPath;
-			document.querySelector("#streaming-content").textContent =
-				"Click to Watch Trailer";
-			streamingContent = document.querySelector("#streaming-content");
-			streamingContent.addEventListener("click", function (event) {
-				event.preventDefault();
-				window.open((streamingContent.href = imdbObject.trailer));
-			});
+//stretch goal: getDetailedResponse will take the regular movie id and give a IMDB movie ID that we need for getStreamsbyIMDBId
+	// function getDetailedResponse(movie_id) {
+	// 	var detailedURL =
+	// 		"https://advanced-movie-search.p.rapidapi.com/movies/getdetails?movie_id=" +
+	// 		movie_id;
+	// 	const options3 = {
+	// 		method: "GET",
+	// 		headers: {
+	// 			"X-RapidAPI-Key": "5cec1b6fafmsh96cbe5417d10614p139e32jsn36f6496e92fe", //Jayden's limited API key
+	// 			"X-RapidAPI-Host": "advanced-movie-search.p.rapidapi.com",
+	// 		},
+	// 	};
+	// 	fetch(detailedURL, options3)
+	// 		.then(function (response) {
+	// 			if (!response.ok) {
+	// 				throw response.json();
+	// 			}
+	// 			return response.json();
+	// 		})
+	// 		.then(function (detailedObject) {
+	// 			//find the data we need in the object
+	// 			console.log(detailedObject);
+	// 			var IMDBID = detailedObject.imdb_id;
 
-			streamingContent.href = imdbObject.trailer;
-		});
-}
+	// 			//if the IMDBID is null, then start over!
+	// 			console.log("The IMDBID IS :" + IMDBID);
+	// 			console.log(
+	// 				"ABOUT TO START THE FETCH FUNCTION THAT GETS STREAM SOURCES FROM MBDLIST USING MBDID"
+	// 			);
+	// 			getStreamsByIMDBID(IMDBID); //call the final function that gets streaming data given an IMDBID.
+	// 		});
+	// }
+// function getStreamsByIMDBID(IMDBID) {
+// 	//uses Get by IMDb ID which is an option from the MDBList API (paid for by Rhys)
+// 	var getByIMDBidURL = "https://mdblist.p.rapidapi.com/?i=" + IMDBID;
+// 	//console.log(getByIMDBidURL+"is the ImbdIdURL");
+// 	const options = {
+// 		method: "GET",
+// 		headers: {
+// 			"X-RapidAPI-Key": "5cec1b6fafmsh96cbe5417d10614p139e32jsn36f6496e92fe", //Jayden's limited API key
+// 			"X-RapidAPI-Host": "mdblist.p.rapidapi.com",
+// 		},
+// 	};
+// 	fetch(getByIMDBidURL, options)
+// 		.then(function (response) {
+// 			if (!response.ok) {
+// 				throw response.json();
+// 			}
+// 			return response.json();
+// 		})
+// 		.then(function (imdbObject) {
+// 			//if the imdbObject is not an object for some weird (but weirdly frequent) reason, maybe start over with getTitleByGenre
+
+// 			var trailerPath = (document.querySelector(
+// 				"#streaming-content"
+// 			).textContent = "Click to Watch Trailer");
+// 			console.log(trailerPath);
+// 			document.querySelector("#streaming-content").textContent = trailerPath;
+// 			document.querySelector("#streaming-content").textContent =
+// 				"Click to Watch Trailer";
+// 			streamingContent = document.querySelector("#streaming-content");
+// 			streamingContent.addEventListener("click", function (event) {
+// 				event.preventDefault();
+// 				window.open((streamingContent.href = imdbObject.trailer));
+// 			});
+
+// 			streamingContent.href = imdbObject.trailer;
+// 		});
+// }
+
 //save movie in local storage, etc
 var watchItButton = document.getElementById("watch-movie");
 var saveMovie = document.getElementById("save-movie");
