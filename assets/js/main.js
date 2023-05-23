@@ -83,35 +83,26 @@ buttonContainerEl.addEventListener("click", (event) => {
 	}
 });
 
-buttonContainerEl.addEventListener("click", grabData); //waits for a click on any genre button
+buttonContainerEl.addEventListener("click", grabData); //waits for a click on any genre button, then does grabData which harvests the genre ids that have been collected in local storage
+
 function grabData(event) {
 	var localGenreIds = JSON.parse(localStorage.getItem("genreIds")); // Array list of genre ids already in local storage
 	var genreID = event.target.dataset.genreid; // Get the genre ID from the clicked button
-	localGenreIds.push(genreID); // Push the genreID onto the end of the list from local storage
-	localStorage.setItem("genreIds", JSON.stringify(localGenreIds)); // Update the genreIds in local storage
+
+	var index = localGenreIds.indexOf(genreID); //check if the genre button has already been clicked an odd number of times (is deselected now)
+	if (index > -1) {
+		localGenreIds.splice(index, 1); // Remove the genreID from the array
+	} else {
+		localGenreIds.push(genreID); // Add the genreID to the array
+	}
+
+	localStorage.setItem("genreIds", JSON.stringify(localGenreIds)); // Update the genreIds in local storage with the new click
 	var genreString = localGenreIds.toString(); // Convert the genreIds to a string
 	console.log("the string in local storage: " + genreString);
-	getTitleByGenre(genreString); // Call the function to get movie titles by genre
+	getTitleByGenre(genreString); // Call the function to get movie titles from the API
 }
-//possible rework of grabdata to include toggling
-// function grabData(event) {
-// 	var localGenreIds = JSON.parse(localStorage.getItem("genreIds")); // Array list of genre ids already in local storage
-// 	var genreID = event.target.dataset.genreid; // Get the genre ID from the clicked button
 
-// 	var index = localGenreIds.indexOf(genreID);
-// 	if (index > -1) {
-// 	  localGenreIds.splice(index, 1); // Remove the genreID from the array
-// 	} else {
-// 	  localGenreIds.push(genreID); // Add the genreID to the array
-// 	}
-
-// 	localStorage.setItem("genreIds", JSON.stringify(localGenreIds)); // Update the genreIds in local storage
-// 	var genreString = localGenreIds.toString(); // Convert the genreIds to a string
-// 	console.log("the string in local storage: " + genreString);
-// 	getTitleByGenre(genreString); // Call the function to get movie titles by genre
-//   }
-
-//The following function calls Advanced Movie Search with the collected genre IDs
+//Gets movie titles from the API
 function getTitleByGenre(genreString) {
 	var genreURL = //This is the url needed for our first API call for movies by genre.
 		"https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres=" +
