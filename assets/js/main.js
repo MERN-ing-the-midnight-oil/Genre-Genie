@@ -68,7 +68,7 @@ const ACTIVE_CLASS = "active";
 
 function updateLocalStorage(event) {
 	var localGenreIds = JSON.parse(localStorage.getItem("genreIds")); // Array list of genre ids already in local storage
-	var genreID = event.target.dataset.genreid; // Get the genre ID from the clicked button
+	var genreID = event.target.dataset.genreid; // Get the genreID from the clicked button. DO NOT CHANGE "genreid" to "genreID" in a logical attempt to match the HTML data attribute. For some reason JS prefers being stupid.
 
 	var index = localGenreIds.indexOf(genreID); //check if the genre button has already been clicked an odd number of times (is deselected now)
 	if (index > -1) {
