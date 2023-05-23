@@ -17,9 +17,9 @@ remote.addEventListener("click", function () {
 });
 
 // Click event to scroll to streamingAvail section
-watchMovieBtn.addEventListener("click", function () {
-	streamingAvail.scrollIntoView(true);
-});
+// watchMovieBtn.addEventListener("click", function () {
+// 	streamingAvail.scrollIntoView(true);
+// });
 
 // Function to scroll to the top of the page
 function scrollTop() {
@@ -102,9 +102,12 @@ buttonContainerEl.addEventListener("click", (event) => {
 		updateLocalStorage(event);
 	}
 });
+// Event listener for suggest movie button click
+suggestBtn.addEventListener("click", suggestMovie);
 
 // Function to suggest a movie
 function suggestMovie() {
+	console.log("the function suggestMovie has been called");
 	const activeGenres = getActiveGenres(); // Get the current active genre IDs
 	const genreString = activeGenres.toString(); // Convert the genre IDs to a string
 
@@ -123,7 +126,8 @@ function getTitleByGenre(genreString) {
 		//This is information the API needs for the call
 		method: "GET",
 		headers: {
-			"X-RapidAPI-Key": "ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790", //Rhys' full subscription to advanced movie search
+			// "X-RapidAPI-Key": "ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790", //Rhys' full subscription to advanced movie search
+			"X-RapidAPI-Key": "5cec1b6fafmsh96cbe5417d10614p139e32jsn36f6496e92fe", //Jayden's limited API key
 			"X-RapidAPI-Host": "advanced-movie-search.p.rapidapi.com",
 		},
 	};
@@ -310,6 +314,6 @@ function showMyMovie() {
 		lastMovie.overviewEl;
 	document.getElementById("modal-movie-rating").textContent = lastMovie.voteEl;
 }
-suggestMovieBtn.addEventListener("click", clickWatchButton);
+//suggestMovieBtn.addEventListener("click", clickWatchButton);
 saveMovie.addEventListener("click", saveMyMovie);
 theSavedMovie.addEventListener("click", showMyMovie);
