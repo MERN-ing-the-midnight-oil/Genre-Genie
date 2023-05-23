@@ -1,4 +1,3 @@
-// Function to handle click on genre buttons
 var remote = document.querySelector("#remote");
 var pickGenre = document.querySelector(".pick-genre");
 var suggestBtn = document.querySelector("#suggest-movie-btn");
@@ -10,16 +9,13 @@ var savedMovieBtn = document.querySelector("#saved-movie");
 var modal = document.querySelector(".modal");
 var closeModal = document.querySelector("#close-modal");
 var buttons = document.querySelector("button");
+var buttonContainerEl = document.querySelector("#all-buttons");
 
 // click event to scroll to pickGenre section//
 remote.addEventListener("click", function () {
 	pickGenre.scrollIntoView(true);
 });
 
-// Click event to scroll to suggestedMovie section
-suggestBtn.addEventListener("click", function () {
-	suggestedMovie.scrollIntoView(true);
-});
 // Click event to scroll to streamingAvail section
 watchMovieBtn.addEventListener("click", function () {
 	streamingAvail.scrollIntoView(true);
@@ -49,9 +45,7 @@ closeModal.addEventListener("click", function () {
 	modal.classList.remove("is-clipped");
 });
 
-// Selecting button container element
-var buttonContainerEl = document.querySelector("#all-buttons");
-var posterPath = null; //Global variable for poster path
+//var posterPath = null; //Global variable for poster path
 
 // Function to create empty storage for genreIds
 function createEmptyStorage() {
@@ -60,32 +54,19 @@ function createEmptyStorage() {
 }
 createEmptyStorage(); //calls the function just created
 
+//gets genre ID's from currently selected buttons only
+function getActiveGenres() {
+	const activeButtons = Array.from(
+		document.querySelectorAll("#all-buttons button.active")
+	);
+	const activeGenreIds = activeButtons.map((button) => button.dataset.genreid);
+	return activeGenreIds;
+}
+
 // Define a CSS class for the active state of the genre buttons
 const ACTIVE_CLASS = "active";
 
-// Add an event listener to the button container
-buttonContainerEl.addEventListener("click", (event) => {
-	const target = event.target;
-
-	// Check if the clicked element is a button within the button container
-	if (target.matches("button")) {
-		const isActive = target.classList.contains(ACTIVE_CLASS);
-
-		// Toggle the active state of the button
-		if (isActive) {
-			target.classList.remove(ACTIVE_CLASS);
-		} else {
-			target.classList.add(ACTIVE_CLASS);
-		}
-
-		// Call the grabData function with the updated active genres
-		grabData(getActiveGenres());
-	}
-});
-
-buttonContainerEl.addEventListener("click", grabData); //waits for a click on any genre button, then does grabData which harvests the genre ids that have been collected in local storage
-
-function grabData(event) {
+function updateLocalStorage(event) {
 	var localGenreIds = JSON.parse(localStorage.getItem("genreIds")); // Array list of genre ids already in local storage
 	var genreID = event.target.dataset.genreid; // Get the genre ID from the clicked button
 
@@ -99,7 +80,36 @@ function grabData(event) {
 	localStorage.setItem("genreIds", JSON.stringify(localGenreIds)); // Update the genreIds in local storage with the new click
 	var genreString = localGenreIds.toString(); // Convert the genreIds to a string
 	console.log("the string in local storage: " + genreString);
-	getTitleByGenre(genreString); // Call the function to get movie titles from the API
+}
+// Event listener for genre button clicks
+buttonContainerEl.addEventListener("click", (event) => {
+	const target = event.target;
+
+	// Check if the clicked element is a button within the button container
+	if (target.matches("button")) {
+		console.log("Genre Button was clicked!");
+		const isActive = target.classList.contains(ACTIVE_CLASS);
+		const genreID = target.dataset.genreID; // Get the genre ID from the clicked button
+
+		// Toggle the active state of the button
+		if (isActive) {
+			target.classList.remove(ACTIVE_CLASS);
+		} else {
+			target.classList.add(ACTIVE_CLASS);
+		}
+
+		// Update the genre IDs in local storage
+		updateLocalStorage(event);
+	}
+});
+
+// Function to suggest a movie
+function suggestMovie() {
+	const activeGenres = getActiveGenres(); // Get the current active genre IDs
+	const genreString = activeGenres.toString(); // Convert the genre IDs to a string
+
+	// Call the function to get movie titles from the API
+	getTitleByGenre(genreString);
 }
 
 //Gets movie titles from the API
@@ -110,16 +120,17 @@ function getTitleByGenre(genreString) {
 		"&page=1";
 
 	const options = {
+		//This is information the API needs for the call
 		method: "GET",
 		headers: {
-			"X-RapidAPI-Key": "5cec1b6fafmsh96cbe5417d10614p139e32jsn36f6496e92fe", //Jayden's limited API key
+			"X-RapidAPI-Key": "ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790", //Rhys' full subscription to advanced movie search
 			"X-RapidAPI-Host": "advanced-movie-search.p.rapidapi.com",
 		},
 	};
 	fetch(genreURL, options)
 		.then(function (response) {
 			if (!response.ok) {
-				throw response.json();
+				throw new Error(response.statusText);
 			}
 			return response.json();
 		})
@@ -131,18 +142,19 @@ function getTitleByGenre(genreString) {
 			//var title = genreObject.results[randomIndex].title;//do we even need this?
 			var movie_id = genreObject.results[randomIndex].id;
 			console.log("the movie ID: " + movie_id);
-			originalTitle = genreObject.results[randomIndex].original_title;
-			overView = genreObject.results[randomIndex].overview;
-			voteAverage = genreObject.results[randomIndex].vote_average;
-			posterPath = genreObject.results[randomIndex].poster_path;
+			const originalTitle = genreObject.results[randomIndex].original_title;
+			const overView = genreObject.results[randomIndex].overview;
+			const voteAverage = genreObject.results[randomIndex].vote_average;
+			const posterPath = genreObject.results[randomIndex].poster_path;
 			document.querySelector("#original_title").textContent = originalTitle;
 			document.querySelector("#overview").textContent = overView;
 			document.querySelector("#vote_average").textContent = voteAverage;
 			document
 				.querySelector(".poster")
 				.children[0].children[0].setAttribute("src", posterPath);
+			//stretch goal for getting the poster path from getDetailedResponse query
 			// console.log(
-			// 	"about to get detailed response, which could give information we need for the trailer url, the stretch goal"
+			// 	"About to give the movie_id to Advanced Movie Search getDetailedResponse"
 			// );
 			// getDetailedResponse(movie_id);
 		});
