@@ -1,4 +1,4 @@
-var remote = document.querySelector("#remote");
+var lamp = document.querySelector("#lamp");
 var pickGenre = document.querySelector(".pick-genre");
 var suggestBtn = document.querySelector("#suggest-movie-btn");
 var suggestedMovie = document.querySelector("#your-movie");
@@ -12,7 +12,7 @@ var buttons = document.querySelector("button");
 var buttonContainerEl = document.querySelector("#all-buttons");
 
 // click event to scroll to pickGenre section//
-remote.addEventListener("click", function () {
+lamp.addEventListener("click", function () {
 	pickGenre.scrollIntoView(true);
 });
 
@@ -238,7 +238,7 @@ function getTitleByGenre(genreString) {
 var watchItButton = document.getElementById("watch-movie");
 var saveMovie = document.getElementById("save-movie");
 var theSavedMovie = document.getElementById("saved-movie");
-var remoteImg = document.getElementById("remote");
+var lampImg = document.getElementById("lamp");
 var movieBox = document.getElementById("streaming-avail");
 var wholeMovieSection = document.getElementById("poster-section");
 var suggestMovieBtn = document.getElementById("suggest-movie-btn");
@@ -247,8 +247,8 @@ var startOverBtn = document.getElementById("Start-over");
 function printConsole() {
 	console.log("test");
 }
-//Reveals buttons and movie information on remote click
-remoteImg.addEventListener("click", function revealMain() {
+//Reveals buttons and movie information on lamp click
+lampImg.addEventListener("click", function revealMain() {
 	var mainBody = document.querySelector("main");
 	mainBody.style.display = "block";
 	wholeMovieSection.style.display = "none";

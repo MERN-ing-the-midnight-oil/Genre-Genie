@@ -10,7 +10,7 @@
 }
 
 h1 {
-    font-size: 400px;
+    font-size: 100px;
     color: var(--dark_red);
     text-align: center;
     font-family: 'Rampart One', cursive;
@@ -61,13 +61,14 @@ header {
     flex-direction: column;
 }
 
-#what-where-to-watch {
-    font-size: 30px;
+#title {
+    font-size: 32px;
     font-family: 'Fuzzy Bubbles', cursive;
     color: var(--bright_red);
     text-align: center;
     position: relative;
     top: -200px;
+    line-height: 0.1;
 }
 
 .img-responsive {
@@ -85,11 +86,11 @@ header {
     font-family: 'Fuzzy Bubbles', cursive;
 }
 
-#remote:hover {
+#lamp:hover {
     transform: scale(1.5);
 }
 
-#remote:active {
+#lamp:active {
     transform: scale(1.5);
 }
 
