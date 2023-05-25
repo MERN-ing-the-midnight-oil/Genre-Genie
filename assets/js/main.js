@@ -3,6 +3,7 @@ var pickGenre = document.querySelector(".pick-genre");
 var suggestBtn = document.querySelector("#suggest-movie-btn");
 var suggestedMovie = document.querySelector("#your-movie");
 var buttonContainerEl = document.querySelector("#all-buttons");
+var posterSection = document.querySelector("#poster-section");
 
 // Function to create empty storage for genreIds
 function createEmptyStorage() {
@@ -64,14 +65,17 @@ suggestBtn.addEventListener("click", suggestMovie);
 
 // Function to suggest a movie
 function suggestMovie() {
-	console.log("the function suggestMovie has been called");
+	console.log(
+		"the function suggestMovie has been called, probably by rubbing.js"
+	);
 	const activeGenres = getActiveGenres(); // Get the current active genre IDs
 	const genreString = activeGenres.toString(); // Convert the genre IDs to a string
-
 	// Call the function to get movie titles from the API
 	getTitleByGenre(genreString);
+	//Reveal the poster section aka the recommended movie
+	posterSection.style.display = "block";
 }
-
+document.addEventListener("suggestMovieEvent", suggestMovie);
 //Gets movie titles from the API
 function getTitleByGenre(genreString) {
 	var genreURL = //This is the url needed for our first API call for movies by genre.

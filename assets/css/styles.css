@@ -96,7 +96,16 @@ header {
     background-color:transparent;
     color: var(--butter);
     font-weight: bold;
+    border: none; 
+  outline: none; 
   }
+
+  #poster-section {
+    display: none;
+  }
+  #poster-section #overview {
+  font-size: 2rem;
+}
   
   .button-icon {
     width: 20px;
@@ -128,7 +137,7 @@ button:hover {
 
 
 
-#streaming-avail {
+/* #streaming-avail {
     display: flex;
     flex-direction: row;
     text-align: center;
@@ -141,7 +150,7 @@ button:hover {
     border-width: thick;
     background-color: var(--dark_red);
     color: var(--light_yellow);
-}
+} */
 
 main {
     display: none;
