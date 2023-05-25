@@ -1,41 +1,42 @@
 :root {
     --bright_red: #DC2026;
-    --dark_red: #7E1616;
     --light_yellow: #FFFEAD;
     --butter: #FCC252;
     --white: #FDFCFA;
-    --grey: #C0C1C1; 
-    --background_color: black;
+    --background_color: #1B1D2A;
     background-color: var(--background_color);
 }
 
 h1 {
     font-size: 100px;
-    color: var(--dark_red);
+    color: var(--bright_red);
     text-align: center;
-    font-family: 'Rampart One', cursive;
+    font-family: 'Lobster', cursive;
 }
 
 h2 {
     font-size: 30px;
-    font-family: 'Fuzzy Bubbles', cursive;
-    color: var(--bright_red);
+    font-family: 'Lobster', cursive;
+    color: var(--light_yellow);
     padding: 20px;
     text-align: center;
+    /* align-items: center; */
 }
 
 h3 {
     font-size: 1.5rem;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    text-decoration-style: solid;
+    /* text-decoration-style: solid; */
     text-align: center;
-} 
+    color: var(--light_yellow);
+}
 
 p {
     font-size: 1rem;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     padding-top: 50px;
     text-align: center;
+    color: var(--light_yellow);
 }
 
 /* Buttons */
@@ -46,16 +47,6 @@ p {
     padding: 25px;
 }
 
-/* phone size */
-@media (max-width: 992px) {
-
-}
-
-/* Tablet size */
-@media (max-width: 768px) {
-
-}
-
 header {
     display: flex;
     flex-direction: column;
@@ -63,8 +54,8 @@ header {
 
 #title {
     font-size: 32px;
-    font-family: 'Fuzzy Bubbles', cursive;
-    color: var(--bright_red);
+    font-family: 'Lobster', cursive;
+    color: var(--light_yellow);
     text-align: center;
     position: relative;
     top: -200px;
@@ -81,9 +72,9 @@ header {
 }
 
 .click-me {
-    color: #fcc252;
+    color: var(--butter);
     font-size: 20px;
-    font-family: 'Fuzzy Bubbles', cursive;
+    font-family: 'Lobster', cursive;
 }
 
 #lamp:hover {
@@ -94,21 +85,13 @@ header {
     transform: scale(1.5);
 }
 
-/* Buttons */
-#all-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 20px;
-}
-
 button {
     font-size: 1.2rem;
-    font-family: 'Fuzzy Bubbles', cursive;
+    font-family: 'Lobster', cursive;
     padding: 20px;
     border-radius: 1.5rem;
-    color: white;
-    background-color: darkred;
+    color: var(--white);
+    background-color: var(--dark_red);
     text-align: center;
 }
 
@@ -117,9 +100,8 @@ button:hover {
 }
 
 button.active {
-    background-color: green  !important;
-  }
-
+    background-color: green !important;
+}
 
 #streaming-avail {
     display: flex;
@@ -133,6 +115,7 @@ button.active {
     border-color: var(--butter);
     border-width: thick;
     background-color: var(--dark_red);
+    color: var(--light_yellow);
 }
 
 main {
@@ -171,5 +154,3 @@ main {
         font-size: 0.7rem;
     }
 }
-
-

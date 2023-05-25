@@ -2,50 +2,7 @@ var lamp = document.querySelector("#lamp");
 var pickGenre = document.querySelector(".pick-genre");
 var suggestBtn = document.querySelector("#suggest-movie-btn");
 var suggestedMovie = document.querySelector("#your-movie");
-var watchMovieBtn = document.querySelector("#watch-movie");
-var streamingAvail = document.querySelector("#streaming-avail");
-var startOverBtn = document.querySelector("#start-over");
-var savedMovieBtn = document.querySelector("#saved-movie");
-var modal = document.querySelector(".modal");
-var closeModal = document.querySelector("#close-modal");
-var buttons = document.querySelector("button");
 var buttonContainerEl = document.querySelector("#all-buttons");
-
-// click event to scroll to pickGenre section//
-lamp.addEventListener("click", function () {
-	pickGenre.scrollIntoView(true);
-});
-
-// Click event to scroll to streamingAvail section
-// watchMovieBtn.addEventListener("click", function () {
-// 	streamingAvail.scrollIntoView(true);
-// });
-
-// Function to scroll to the top of the page
-function scrollTop() {
-	if (history.scrollRestoration) {
-		history.scrollRestoration = "manual";
-	} else {
-		window.onbeforeunload = function () {
-			window.scrollTo(0, 0);
-		};
-	}
-}
-
-// Click event to open the modal
-savedMovieBtn.addEventListener("click", function () {
-	console.log("open modal");
-	modal.classList.add("is-active");
-	modal.classList.add("is-clipped");
-});
-
-closeModal.addEventListener("click", function () {
-	console.log("close modal");
-	modal.classList.remove("is-active");
-	modal.classList.remove("is-clipped");
-});
-
-//var posterPath = null; //Global variable for poster path
 
 // Function to create empty storage for genreIds
 function createEmptyStorage() {
@@ -123,7 +80,6 @@ function getTitleByGenre(genreString) {
 		"&page=1";
 
 	const options = {
-		//This is information the API needs for the call
 		method: "GET",
 		headers: {
 			// "X-RapidAPI-Key": "ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790", //Rhys' full subscription to advanced movie search
@@ -233,87 +189,3 @@ function getTitleByGenre(genreString) {
 // 			streamingContent.href = imdbObject.trailer;
 // 		});
 // }
-
-//save movie in local storage, etc
-var watchItButton = document.getElementById("watch-movie");
-var saveMovie = document.getElementById("save-movie");
-var theSavedMovie = document.getElementById("saved-movie");
-var lampImg = document.getElementById("lamp");
-var movieBox = document.getElementById("streaming-avail");
-var wholeMovieSection = document.getElementById("poster-section");
-var suggestMovieBtn = document.getElementById("suggest-movie-btn");
-var startOverBtn = document.getElementById("Start-over");
-//Console log test
-function printConsole() {
-	console.log("test");
-}
-//Reveals buttons and movie information on lamp click
-lampImg.addEventListener("click", function revealMain() {
-	var mainBody = document.querySelector("main");
-	mainBody.style.display = "block";
-	wholeMovieSection.style.display = "none";
-	movieBox.style.display = "none";
-	pickGenre.scrollIntoView(true);
-});
-
-suggestMovieBtn.addEventListener("click", function revealMovies() {
-	wholeMovieSection.style.display = "block";
-	movieBox.style.display = "block";
-	movieBox.style.display = "flex";
-	streamingAvail.scrollIntoView(true);
-});
-
-startOverBtn.addEventListener("click", function hideMovies() {
-	wholeMovieSection.style.display = "none";
-	movieBox.style.display = "none";
-	sessionStorage.removeItem("genreIds");
-	localStorage.setItem("genreIds", "[]");
-});
-
-// Fills sidebar with currently selected movie information (Might need to delete later)
-function clickWatchButton() {
-	var poster = document.getElementById("poster-img").src;
-	var title = document.getElementById("original_title").textContent;
-	var overview = document.getElementById("overview").textContent;
-	var vote = document.getElementById("vote_average").textContent;
-	//Reveals the movie box
-	movieBox.style.display = "block";
-	movieBox.style.display = "flex";
-
-	//Targets the sidebar and fills with their original information above
-	document.getElementById("poster-img2").src = poster;
-	document.getElementById("original_title2").textContent = title;
-	document.getElementById("overview2").textContent = overview;
-	document.getElementById("vote_average2").textContent = [
-		"Rating: " + vote + "/10",
-	];
-}
-
-//Stores currently displayed movie into localStorage
-function saveMyMovie() {
-	// Clears local storage first if it contains previous movie
-	if (localStorage !== null) {
-		localStorage.clear();
-	}
-	var captureMovieElements = {
-		posterEl: document.getElementById("poster-img2").src,
-		titleEl: document.getElementById("original_title2").textContent,
-		overviewEl: document.getElementById("overview2").textContent,
-		voteEl: document.getElementById("vote_average2").textContent,
-	};
-
-	localStorage.setItem("saved movie", JSON.stringify(captureMovieElements));
-}
-
-function showMyMovie() {
-	var lastMovie = JSON.parse(localStorage.getItem("saved movie"));
-	console.log(lastMovie);
-	document.getElementById("modal-poster").src = lastMovie.posterEl;
-	document.getElementById("modal-movie-name").textContent = lastMovie.titleEl;
-	document.getElementById("modal-movie-plot").textContent =
-		lastMovie.overviewEl;
-	document.getElementById("modal-movie-rating").textContent = lastMovie.voteEl;
-}
-//suggestMovieBtn.addEventListener("click", clickWatchButton);
-saveMovie.addEventListener("click", saveMyMovie);
-theSavedMovie.addEventListener("click", showMyMovie);
