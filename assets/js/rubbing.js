@@ -1,69 +1,73 @@
-// Get references to the necessary elements
-var suggestMovieBtn = document.getElementById("suggest-movie-btn");
-var lampImage = document.querySelector("#suggest-movie-btn img");
+// rubbing.js
 
-var cursorOverLamp = false; // Flag to track if the cursor is over the lamp image
-var cursorInMotion = false; // Flag to track if the cursor is in motion
-var movementStartTime = null; // Timestamp to store the start time of cursor movement
-var cumulativeMovementTime = 0; // Total accumulated movement time
-var threshold = 3000; // Three seconds threshold for accumulated movement time
+// Get the lamp image element
+const lampImage = document.querySelector(".suggest-movie-btn");
 
-// Event listeners for mouse enter and leave events on the lamp image
-lampImage.addEventListener("mouseenter", handleMouseEnter);
-lampImage.addEventListener("mouseleave", handleMouseLeave);
+// Declare variables
+let timerId;
+let isMouseMoving = false;
+let currentCloudIndex = 1;
+let timerCount = 0;
 
-// Event listeners for mousemove and mouseout events on the lamp image
+// Start the timer when the mouse enters the lamp image
+lampImage.addEventListener("mouseenter", startTimer);
+
+// Reset the timer and animation when the mouse leaves the lamp image
+lampImage.addEventListener("mouseleave", resetTimer);
+
+// Function to start the timer and animation when the mouse enters the lamp image
+function startTimer() {
+	console.log("Mouse entered the lamp image.");
+	isMouseMoving = true; // Set the flag to indicate mouse movement
+	timerId = setInterval(updateTimer, 100); // Start the timer and update every 100 milliseconds
+}
+
+// Function to reset the timer and animation when the mouse leaves the lamp image
+function resetTimer() {
+	console.log("Mouse left the lamp image.");
+	clearInterval(timerId); // Clear the timer
+	isMouseMoving = false; // Reset the flag for mouse movement
+	currentCloudIndex = 1; // Reset the cloud image index
+	lampImage.src = "./lamp.png"; // Reset the lamp image source
+	timerCount = 0; // Reset the timer count
+}
+
+// Function to handle mouse movement on the document
+function handleMouseMove(event) {
+	if (isMouseMoving && event.target === lampImage) {
+		// Reset the timer count on each mouse movement within the lamp image
+		timerCount = 0;
+	}
+	if (isMouseMoving) {
+		console.log("Mouse is moving within the lamp image.");
+	}
+}
+
+// Add the event listener for mousemove only when the mouse is within the lamp image
 lampImage.addEventListener("mousemove", handleMouseMove);
-lampImage.addEventListener("mouseout", handleMouseOut);
 
-// Function to handle the mouseenter event on the lamp image
-function handleMouseEnter() {
-	cursorOverLamp = true;
+// Function to change the cloud image in the lamp image
+function changeCloudImage() {
+	currentCloudIndex = currentCloudIndex === 7 ? 1 : currentCloudIndex + 1; // Update the current cloud index, looping from 1 to 7
+	lampImage.src = `./clouds/cloud${currentCloudIndex}.png`; // Set the lamp image source to the current cloud image
 }
 
-// Function to handle the mouseleave event on the lamp image
-function handleMouseLeave() {
-	cursorOverLamp = false;
-	resetMovementTracking();
-}
-
-// Function to handle the mousemove event on the lamp image
-function handleMouseMove() {
-	if (cursorOverLamp) {
-		if (!cursorInMotion) {
-			// Start tracking movement
-			cursorInMotion = true;
-			movementStartTime = performance.now();
-			requestAnimationFrame(trackMovement);
-		} else {
-			// Calculate time difference between frames and accumulate movement time
-			var currentTime = performance.now();
-			var deltaTime = currentTime - movementStartTime;
-			cumulativeMovementTime += deltaTime;
-			movementStartTime = currentTime;
-
-			if (cumulativeMovementTime >= threshold) {
-				// Trigger suggestMovie event and reset movement tracking
-				suggestMovie();
-				resetMovementTracking();
-			}
-		}
+// Function to update the timer count and trigger suggestMovieEvent when the timer reaches 3000 milliseconds
+function updateTimer() {
+	timerCount += 100; // Increment the timer count by 100 milliseconds
+	if (timerCount === 2000) {
+		console.log("Timer reached 2000 milliseconds.");
+	} else if (timerCount === 3000) {
+		console.log("Timer reached 3000 milliseconds.");
+		clearInterval(timerId); // Clear the timer when it reaches 3000 milliseconds
+		triggerSuggestMovieEvent(); // Trigger the suggestMovieEvent
 	}
+	changeCloudImage(); // Change the cloud image during the timer
 }
 
-// Function to handle the mouseout event on the lamp image
-function handleMouseOut() {
-	if (cursorInMotion) {
-		// Add time difference since the last frame to cumulative movement time
-		var currentTime = performance.now();
-		var deltaTime = currentTime - movementStartTime;
-		cumulativeMovementTime += deltaTime;
-	}
-}
-
-// Function to reset the movement tracking
-function resetMovementTracking() {
-	cursorInMotion = false;
-	movementStartTime = null;
-	cumulativeMovementTime = 0;
+// Function to trigger the suggestMovieEvent
+function triggerSuggestMovieEvent() {
+	console.log("Suggesting movie event triggered.");
+	const suggestMovieEvent = new Event("suggestMovieEvent"); // Create a new custom event
+	document.dispatchEvent(suggestMovieEvent); // Dispatch the custom event on the document
 }

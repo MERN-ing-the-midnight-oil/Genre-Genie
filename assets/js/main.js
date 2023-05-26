@@ -3,6 +3,7 @@ var pickGenre = document.querySelector(".pick-genre");
 var suggestBtn = document.querySelector("#suggest-movie-btn");
 var suggestedMovie = document.querySelector("#your-movie");
 var buttonContainerEl = document.querySelector("#all-buttons");
+var genreButtons = document.querySelectorAll(".genre-button");
 var posterSection = document.querySelector("#poster-section");
 
 // Function to create empty storage for genreIds
@@ -60,8 +61,10 @@ buttonContainerEl.addEventListener("click", (event) => {
 		updateLocalStorage(event);
 	}
 });
+
 // Event listener for suggest movie button click
-suggestBtn.addEventListener("click", suggestMovie);
+//suggestBtn.addEventListener("click", suggestMovie);
+document.addEventListener("suggestMovieEvent", suggestMovie);
 
 // Function to suggest a movie
 function suggestMovie() {
@@ -72,9 +75,14 @@ function suggestMovie() {
 	const genreString = activeGenres.toString(); // Convert the genre IDs to a string
 	// Call the function to get movie titles from the API
 	getTitleByGenre(genreString);
-	//Reveal the poster section aka the recommended movie
+
+	// Hide the suggest movie button
+	suggestBtn.classList.add("hidden");
+
+	// Reveal the poster section
 	posterSection.style.display = "block";
 }
+
 document.addEventListener("suggestMovieEvent", suggestMovie);
 //Gets movie titles from the API
 function getTitleByGenre(genreString) {
@@ -116,80 +124,10 @@ function getTitleByGenre(genreString) {
 			document
 				.querySelector(".poster")
 				.children[0].children[0].setAttribute("src", posterPath);
-			//stretch goal for getting the poster path from getDetailedResponse query
+			//stretch goal for getting the poster path from getDetailedResponse query to stream a preview for the suggested movie
 			// console.log(
-			// 	"About to give the movie_id to Advanced Movie Search getDetailedResponse"
+			// 	"About to give the suggested movie_id to Advanced Movie Search getDetailedResponse"
 			// );
 			// getDetailedResponse(movie_id);
 		});
 }
-
-//stretch goal: getDetailedResponse will take the regular movie id and give a IMDB movie ID that we need for getStreamsbyIMDBId
-// function getDetailedResponse(movie_id) {
-// 	var detailedURL =
-// 		"https://advanced-movie-search.p.rapidapi.com/movies/getdetails?movie_id=" +
-// 		movie_id;
-// 	const options3 = {
-// 		method: "GET",
-// 		headers: {
-// 			"X-RapidAPI-Key": "5cec1b6fafmsh96cbe5417d10614p139e32jsn36f6496e92fe", //Jayden's limited API key
-// 			"X-RapidAPI-Host": "advanced-movie-search.p.rapidapi.com",
-// 		},
-// 	};
-// 	fetch(detailedURL, options3)
-// 		.then(function (response) {
-// 			if (!response.ok) {
-// 				throw response.json();
-// 			}
-// 			return response.json();
-// 		})
-// 		.then(function (detailedObject) {
-// 			//find the data we need in the object
-// 			console.log(detailedObject);
-// 			var IMDBID = detailedObject.imdb_id;
-
-// 			//if the IMDBID is null, then start over!
-// 			console.log("The IMDBID IS :" + IMDBID);
-// 			console.log(
-// 				"ABOUT TO START THE FETCH FUNCTION THAT GETS STREAM SOURCES FROM MBDLIST USING MBDID"
-// 			);
-// 			getStreamsByIMDBID(IMDBID); //call the final function that gets streaming data given an IMDBID.
-// 		});
-// }
-// function getStreamsByIMDBID(IMDBID) {
-// 	//uses Get by IMDb ID which is an option from the MDBList API (paid for by Rhys)
-// 	var getByIMDBidURL = "https://mdblist.p.rapidapi.com/?i=" + IMDBID;
-// 	//console.log(getByIMDBidURL+"is the ImbdIdURL");
-// 	const options = {
-// 		method: "GET",
-// 		headers: {
-// 			"X-RapidAPI-Key": "5cec1b6fafmsh96cbe5417d10614p139e32jsn36f6496e92fe", //Jayden's limited API key
-// 			"X-RapidAPI-Host": "mdblist.p.rapidapi.com",
-// 		},
-// 	};
-// 	fetch(getByIMDBidURL, options)
-// 		.then(function (response) {
-// 			if (!response.ok) {
-// 				throw response.json();
-// 			}
-// 			return response.json();
-// 		})
-// 		.then(function (imdbObject) {
-// 			//if the imdbObject is not an object for some weird (but weirdly frequent) reason, maybe start over with getTitleByGenre
-
-// 			var trailerPath = (document.querySelector(
-// 				"#streaming-content"
-// 			).textContent = "Click to Watch Trailer");
-// 			console.log(trailerPath);
-// 			document.querySelector("#streaming-content").textContent = trailerPath;
-// 			document.querySelector("#streaming-content").textContent =
-// 				"Click to Watch Trailer";
-// 			streamingContent = document.querySelector("#streaming-content");
-// 			streamingContent.addEventListener("click", function (event) {
-// 				event.preventDefault();
-// 				window.open((streamingContent.href = imdbObject.trailer));
-// 			});
-
-// 			streamingContent.href = imdbObject.trailer;
-// 		});
-// }

@@ -87,7 +87,7 @@ header {
 
 .center {
     text-align: center;
-    margin-top: 20px; /* Adjust the margin as needed */
+    margin-top: 20px; 
   }
   
   #suggest-movie-btn {
@@ -98,8 +98,12 @@ header {
     font-weight: bold;
     border: none; 
   outline: none; 
+  margin-bottom: 50px;
   }
-
+  #suggest-movie-btn.hidden {
+    display: none;
+  }
+  
   #poster-section {
     display: none;
   }
@@ -110,7 +114,7 @@ header {
   .button-icon {
     width: 20px;
     height: 20px;
-    margin-right: 10px; /* Adjust the margin as needed */
+    margin-right: 10px; 
   }
 
 #lamp:hover {
@@ -136,25 +140,6 @@ button:hover {
 }
 
 
-
-/* #streaming-avail {
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    padding: 60px;
-    margin: 60px;
-    border-style: dotted;
-    border-color: var(--butter);
-    border-width: thick;
-    background-color: var(--dark_red);
-    color: var(--light_yellow);
-} */
-
-main {
-    display: none;
-}
 
 /* Desktop size */
 @media (min-width: 992px) {
