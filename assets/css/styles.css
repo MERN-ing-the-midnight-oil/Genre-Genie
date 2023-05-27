@@ -103,7 +103,22 @@ header {
   #suggest-movie-btn.hidden {
     display: none;
   }
+  .suggest-movie-btn {
+    position: relative;
+    height: 450px; /* keeping a fixed height container to keep animation from getting jumpy */
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+  }
+  .suggest-movie-btn img.cloud-animation {
+    pointer-events: none;
+      position: relative;
+      bottom: 0;
+      margin: 0 auto;
+    }
+
   
+
   #poster-section {
     display: none;
   }
