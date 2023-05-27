@@ -112,11 +112,9 @@ header {
   display: flex;
   align-items: flex-end;
   background-image: url(../../lamp.png);
-  /* background-size: 613px 391 px; */
+  background-size: 613px 391 px;
   background-position: bottom center;
   background-repeat: no-repeat;
-  width: 613px;
-  height: 391px;
 }
 
 .suggest-movie-btn img.cloud-animation {
@@ -127,7 +125,6 @@ header {
   transform: translateX(-50%);
   width: 613px;
   height: 391px;
-  
 }
 
   

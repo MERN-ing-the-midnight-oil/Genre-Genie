@@ -51,6 +51,8 @@ function changeCloudImage() {
 	currentCloudIndex =
 		currentCloudIndex === cloudFrames.length ? 1 : currentCloudIndex + 1; // Update the current cloud index, looping from 1 to the total number of frames
 	lampImage.src = `./clouds/${cloudFrames[currentCloudIndex - 1]}`; // Set the lamp image source to the current cloud image
+	lampImage.style.width = "613px"; // Set the width of the lamp image
+	lampImage.style.height = "391px"; // Set the height of the lamp image
 }
 
 // Function to update the timer count and trigger suggestMovieEvent when the timer reaches 3000 milliseconds
