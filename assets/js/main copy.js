@@ -131,33 +131,3 @@ function getTitleByGenre(genreString) {
 			// getDetailedResponse(movie_id);
 		});
 }
-var resetButton = document.createElement("button"); // Create a reset button
-resetButton.textContent = "Rub the lamp again for a new suggestion";
-resetButton.id = "reset-btn";
-
-// Function to handle the click event on the "rub-again-btn" button
-function handleRubAgainClick() {
-	// Empty the genreIds array in local storage
-	localStorage.setItem("genreIds", "[]");
-
-	// Reset the genre buttons
-	const genreButtons = document.querySelectorAll(".genre-button");
-	genreButtons.forEach((button) => button.classList.remove("active"));
-
-	// Hide the movie suggestion section
-	const posterSection = document.getElementById("poster-section");
-	const hideForNowSection = document.getElementById("hideForNow");
-	posterSection.classList.add("hidden");
-	hideForNowSection.classList.add("hidden");
-
-	// Show the genre selection section
-	const pickGenreSection = document.querySelector(".pick-genre");
-	pickGenreSection.classList.remove("hidden");
-
-	// Reload the page
-	location.reload();
-}
-
-// Add event listener to the "rub-again-btn" button
-const rubAgainBtn = document.querySelector("#rub-again-btn");
-rubAgainBtn.addEventListener("click", handleRubAgainClick);
