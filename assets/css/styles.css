@@ -99,6 +99,7 @@ header {
   border: none;
   outline: none;
   margin-bottom: 50px;
+  
 }
 
 #suggest-movie-btn.hidden {
@@ -117,6 +118,7 @@ header {
   background-repeat: no-repeat;
   width: 613px;
   height: 391px;
+cursor: grab;
 }
 
 .suggest-movie-btn img.cloud-animation {
@@ -169,6 +171,29 @@ button:hover {
     box-shadow: 0px 0px 10px maroon;
 }
 
+#rub-again-btn {
+    /* Increasing button size */
+    padding: 15px 30px;
+    font-size: 24px;
+      
+    /* Centering the button */
+    display: block;
+    margin: 20px auto;
+    
+    /* Optional Styling */
+    background-color: var(--bright_red); /* use --bright_red here */
+    color: var(--white); /* if you want the text to be white */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+    
+  #rub-again-btn:hover {
+    background-color: darken(var(--bright_red), 10%); /* use darken() to make it darker when hovered over */
+  }
+  
+  
 
 
 /* Desktop size */
