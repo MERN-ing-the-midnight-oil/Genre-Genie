@@ -193,7 +193,27 @@ button:hover {
     background-color: darken(var(--bright_red), 10%); /* use darken() to make it darker when hovered over */
   }
   
+  #save-movie-btn {
+    /* Increasing button size */
+    padding: 15px 30px;
+    font-size: 24px;
+    
+    /* Centering the button */
+    display: block;
+    margin: 20px auto;
+    
+    /* Optional Styling */
+    background-color: var(--bright_red);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
   
+  #save-movie-btn:hover {
+    background-color: #9c0d15;
+  }
 
 
 /* Desktop size */

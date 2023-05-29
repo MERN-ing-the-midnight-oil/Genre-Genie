@@ -5,6 +5,7 @@ var suggestedMovie = document.querySelector("#your-movie");
 var buttonContainerEl = document.querySelector("#all-buttons");
 var genreButtons = document.querySelectorAll(".genre-button");
 var posterSection = document.querySelector("#poster-section");
+var saveMovieButton = document.createElement("button"); // Create a 'save this movie for later' button
 
 // Function to create empty storage for genreIds
 function createEmptyStorage() {
@@ -161,3 +162,49 @@ function handleRubAgainClick() {
 // Add event listener to the "rub-again-btn" button
 const rubAgainBtn = document.querySelector("#rub-again-btn");
 rubAgainBtn.addEventListener("click", handleRubAgainClick);
+
+//Add event listener to the "save movie" button
+document.getElementById("save-movie-btn").addEventListener("click", saveMovie);
+
+function saveMovie() {
+	var savedMovies = JSON.parse(localStorage.getItem("savedMovies")) || []; // Array list of saved movies already in local storage
+	var currentMovie = {
+		title: document.querySelector("#original_title").textContent, // Get the current movie title from the DOM
+		image: document.querySelector(".poster").children[0].children[0].src, // Get the current movie poster image path from the DOM
+	};
+
+	var movieExists = savedMovies.find(
+		(movie) => movie.title === currentMovie.title
+	);
+	if (!movieExists) {
+		savedMovies.push(currentMovie); // Add the current movie to the array if it is not already there
+	}
+
+	localStorage.setItem("savedMovies", JSON.stringify(savedMovies)); // Update the savedMovies in local storage with the new movie
+	console.log("Saved movies: " + JSON.stringify(savedMovies));
+}
+
+function displaySavedMovies() {
+	var savedMovies = JSON.parse(localStorage.getItem("savedMovies")) || []; // Get the saved movies from local storage
+
+	var carousel = document.querySelector("#saved-movies-carousel"); // Get the carousel element from the DOM. Replace '#saved-movies-carousel' with the actual selector for your carousel.
+
+	savedMovies.forEach((movie) => {
+		// For each movie, create an img element for the poster and a p element for the title, and append them to the carousel.
+		var poster = document.createElement("img");
+		poster.src = movie.image;
+		poster.alt = movie.title;
+		poster.className = "carousel-poster"; // Add a class for styling the poster image. You can replace 'carousel-poster' with whatever class name you want.
+
+		var title = document.createElement("p");
+		title.textContent = movie.title;
+		title.className = "carousel-title"; // Add a class for styling the movie title. You can replace 'carousel-title' with whatever class name you want.
+
+		var movieContainer = document.createElement("div");
+		movieContainer.className = "carousel-movie"; // Add a class for styling the movie container. You can replace 'carousel-movie' with whatever class name you want.
+
+		movieContainer.appendChild(poster);
+		movieContainer.appendChild(title);
+		carousel.appendChild(movieContainer);
+	});
+}
