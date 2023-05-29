@@ -15,13 +15,33 @@ lampImage.addEventListener("mouseenter", startTimer);
 // Reset the timer and animation when the mouse leaves the lamp image
 lampImage.addEventListener("mouseleave", resetTimer);
 
+// Add the event listener for mousemove only when the mouse is within the lamp image
+lampImage.addEventListener("mousemove", handleMouseMove);
+
 // Function to start the timer and animation when the mouse enters the lamp image
 function startTimer() {
 	console.log("Mouse entered the lamp image.");
 	isMouseMoving = true; // Set the flag to indicate mouse movement
-	timerId = setInterval(updateTimer, 500); // Start the timer and update every 500 milliseconds (0.5 seconds)
+	timerId = setInterval(updateTimer, 100); // Start the timer and update every 100 milliseconds (0.5 seconds)
+}
+// Function to pause the timer
+function pauseTimerFunc() {
+	if (timerId) {
+		// Only clear the timer if it's currently running
+		console.log("Timer paused at", timerCount, "milliseconds.");
+		clearInterval(timerId); // Clear the timer
+		timerId = null; // Set timerId to null to indicate the timer is not currently running
+	}
 }
 
+// Function to resume the timer
+function resumeTimer() {
+	if (!timerId) {
+		// Only resume the timer if it's currently not running
+		console.log("Timer resumed at", timerCount, "milliseconds.");
+		timerId = setInterval(updateTimer, 50); // Start the timer and update every 50 milliseconds (0.05 seconds)
+	}
+}
 // Function to reset the timer and animation when the mouse leaves the lamp image
 function resetTimer() {
 	console.log("Mouse left the lamp image.");
@@ -32,32 +52,45 @@ function resetTimer() {
 	timerCount = 0; // Reset the timer count
 }
 
+// Handling mouse movement.
+// variable to keep track of when mouse was last moved
+let lastMouseMove = null;
+let pauseTimer = null;
 // Function to handle mouse movement on the document
 function handleMouseMove(event) {
-	if (isMouseMoving && event.target === lampImage) {
-		// Reset the timer count on each mouse movement within the lamp image
-		timerCount = 0;
+	// If the mouse was not moving before but is moving now, resume the timer.
+	if (!isMouseMoving) {
+		isMouseMoving = true;
+		resumeTimer();
 	}
-	if (isMouseMoving) {
-		console.log("Mouse is moving within the lamp image.");
-	}
-}
 
-// Add the event listener for mousemove only when the mouse is within the lamp image
-lampImage.addEventListener("mousemove", handleMouseMove);
+	// Whenever mouse is moved, reset lastMouseMove time.
+	lastMouseMove = Date.now();
+
+	// If pauseTimer already exists, clear it so it can be reset
+	if (pauseTimer) {
+		clearTimeout(pauseTimer);
+	}
+
+	// Set a timer to pause the main timer if no further mousemove event is received in the next 100ms
+	pauseTimer = setTimeout(function () {
+		if (Date.now() - lastMouseMove > 100) {
+			isMouseMoving = false;
+			pauseTimerFunc();
+		}
+	}, 100);
+}
 
 // Function to change the cloud image in the lamp image
 function changeCloudImage() {
 	currentCloudIndex =
 		currentCloudIndex === cloudFrames.length ? 1 : currentCloudIndex + 1; // Update the current cloud index, looping from 1 to the total number of frames
 	lampImage.src = `./clouds/${cloudFrames[currentCloudIndex - 1]}`; // Set the lamp image source to the current cloud image
-	lampImage.style.width = "613px"; // Set the width of the lamp image
-	lampImage.style.height = "391px"; // Set the height of the lamp image
 }
 
 // Function to update the timer count and trigger suggestMovieEvent when the timer reaches 3000 milliseconds
 function updateTimer() {
-	timerCount += 500; // Increment the timer count by 500 milliseconds (0.5 seconds)
+	timerCount += 100; // Increment the timer count by 100 milliseconds (0.5 seconds)
 	if (timerCount === 2000) {
 		console.log("Timer reached 2000 milliseconds.");
 	} else if (timerCount === 3000) {
