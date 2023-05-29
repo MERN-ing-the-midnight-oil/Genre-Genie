@@ -235,6 +235,40 @@ button:hover {
         font-size: 0.8rem;
     }
 }
+#saved-movies-carousel-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  #saved-movies-carousel {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    align-items: center;
+    gap: 20px; /* Adjust the value as needed for spacing between carousel items */
+  }
+  
+  .carousel-movie {
+    /* flex: 0 0 auto;
+    width: 200px; /* Adjust the width of each movie container */
+    /* padding: 10px;  */
+    text-align: center;
+  }
+  
+  .carousel-poster {
+    width: 100%; /* Adjust the width of each movie poster image */
+    height: auto; /* Allow the height to adjust proportionally */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+  }
+  
+  .carousel-title {
+    font-size: 2rem;
+    font-family: 'Lobster', cursive;
+    color: var(--light_yellow);
+    margin-top: 20px;
+    text-align: center;
+  }
+
 
 /* Mobile size */
 @media (max-width: 576px) {

@@ -7,6 +7,14 @@ var genreButtons = document.querySelectorAll(".genre-button");
 var posterSection = document.querySelector("#poster-section");
 var saveMovieButton = document.createElement("button"); // Create a 'save this movie for later' button
 
+// Function to handle the page load event to load saved movies
+function handlePageLoad() {
+	// Call the function to display the saved movies in the carousel
+	displaySavedMovies();
+}
+// Event listener for the page load event
+window.addEventListener("DOMContentLoaded", handlePageLoad);
+
 // Function to create empty storage for genreIds
 function createEmptyStorage() {
 	//creates a key and value in local storage to start creating a list of genreIds
@@ -182,12 +190,19 @@ function saveMovie() {
 
 	localStorage.setItem("savedMovies", JSON.stringify(savedMovies)); // Update the savedMovies in local storage with the new movie
 	console.log("Saved movies: " + JSON.stringify(savedMovies));
+	// Call the function to display the saved movies in the carousel
+	displaySavedMovies();
 }
 
 function displaySavedMovies() {
 	var savedMovies = JSON.parse(localStorage.getItem("savedMovies")) || []; // Get the saved movies from local storage
 
 	var carousel = document.querySelector("#saved-movies-carousel"); // Get the carousel element from the DOM. Replace '#saved-movies-carousel' with the actual selector for your carousel.
+
+	// Clear the carousel by removing all child elements
+	while (carousel.firstChild) {
+		carousel.removeChild(carousel.firstChild);
+	}
 
 	savedMovies.forEach((movie) => {
 		// For each movie, create an img element for the poster and a p element for the title, and append them to the carousel.
