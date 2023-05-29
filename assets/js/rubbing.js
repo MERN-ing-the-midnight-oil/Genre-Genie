@@ -88,17 +88,27 @@ function changeCloudImage() {
 	lampImage.src = `./clouds/${cloudFrames[currentCloudIndex - 1]}`; // Set the lamp image source to the current cloud image
 }
 
-// Function to update the timer count and trigger suggestMovieEvent when the timer reaches 3000 milliseconds
+let frameCounter = 0; //this is a way to slow down my cloud image animation frame rate
+// Function to update the timer count and trigger suggestMovieEvent when the timer reaches 4000 milliseconds
 function updateTimer() {
-	timerCount += 100; // Increment the timer count by 100 milliseconds (0.5 seconds)
-	if (timerCount === 2000) {
-		console.log("Timer reached 2000 milliseconds.");
-	} else if (timerCount === 3000) {
-		console.log("Timer reached 3000 milliseconds.");
-		clearInterval(timerId); // Clear the timer when it reaches 3000 milliseconds
-		triggerSuggestMovieEvent(); // Trigger the suggestMovieEvent
+	if (isMouseMoving) {
+		timerCount += 50; // Increment the timer count by 50 milliseconds (0.05 seconds)
+		frameCounter++; // Increment the frame counter
+
+		// Change the cloud image every x updates (roughly every half a second)
+		if (frameCounter % 10 === 0) {
+			changeCloudImage();
+		}
+
+		if (timerCount === 2000) {
+			console.log("Timer reached 2000 milliseconds.");
+		} else if (timerCount >= 4000) {
+			console.log("Timer reached 4000 milliseconds.");
+			clearInterval(timerId); // Clear the timer when it reaches 4000 milliseconds
+			triggerSuggestMovieEvent(); // Trigger the suggestMovieEvent
+			timerCount = 0; // Reset the timer count
+		}
 	}
-	changeCloudImage(); // Change the cloud image during the timer
 }
 
 // Function to trigger the suggestMovieEvent
@@ -117,4 +127,10 @@ const cloudFrames = [
 	"cloud5.png",
 	"cloud6.png",
 	"cloud7.png",
+	"cloud6.png",
+	"cloud5.png",
+	"cloud4.png",
+	"cloud3.png",
+	"cloud2.png",
+	"cloud1.png",
 ];
