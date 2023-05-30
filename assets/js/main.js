@@ -1,5 +1,10 @@
 var lamp = document.querySelector("#lamp");
 var pickGenre = document.querySelector(".pick-genre");
+var pickGenre = document.querySelector(".pick-genre");
+//  smoothly scroll to bring the 'pick-genre' section into view when user engages with pick-genre section.
+pickGenre.addEventListener("click", function () {
+	pickGenre.scrollIntoView({ behavior: "smooth" });
+});
 var suggestBtn = document.querySelector("#suggest-movie-btn");
 var suggestedMovie = document.querySelector("#your-movie");
 var buttonContainerEl = document.querySelector("#all-buttons");
@@ -77,11 +82,13 @@ document.addEventListener("suggestMovieEvent", suggestMovie);
 
 // Function to suggest a movie
 function suggestMovie() {
-	console.log(
-		"the function suggestMovie has been called, probably by rubbing.js"
-	);
 	const activeGenres = getActiveGenres(); // Get the current active genre IDs
 	const genreString = activeGenres.toString(); // Convert the genre IDs to a string
+	// Check if there are at least two genre IDs selected
+	if (activeGenres.length < 2) {
+		alert("Select at least two genres");
+		return;
+	}
 	// Call the function to get movie titles from the API
 	getTitleByGenre(genreString);
 
@@ -94,6 +101,7 @@ function suggestMovie() {
 
 document.addEventListener("suggestMovieEvent", suggestMovie);
 //Gets movie titles from the API
+
 function getTitleByGenre(genreString) {
 	var genreURL = //This is the url needed for our first API call for movies by genre.
 		"https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres=" +
@@ -116,11 +124,17 @@ function getTitleByGenre(genreString) {
 			return response.json();
 		})
 		.then(function (genreObject) {
-			console.log(genreObject + "is the genre parsed object");
-			//the parsed object is full of information like titles, overviews, and movie posters.
+			if (genreObject.results.length === 0) {
+				alert(
+					"I have a confession. I couldn't find a movie fitting all those genres because... I can't actually work miracles. Please pick fewer genres and rub again."
+				);
+				return;
+			}
+
+			//the genre object should have many titles, overviews, and movie posters.
 			var randomIndex = Math.floor(Math.random() * genreObject.results.length);
 			//the randomIndex is like a bookmark that lets us pick a movie at random from a long list of movies and repeatedly come back to it to collect different pieces of information pertaining to that particular movie- specifically the title, original title, overview (movie summary), and vote average.
-			//var title = genreObject.results[randomIndex].title;//do we even need this?
+			//future goal: sort by movie rating instead of choosing one movie at random from the genre object
 			var movie_id = genreObject.results[randomIndex].id;
 			console.log("the movie ID: " + movie_id);
 			const originalTitle = genreObject.results[randomIndex].original_title;
@@ -197,29 +211,30 @@ function saveMovie() {
 function displaySavedMovies() {
 	var savedMovies = JSON.parse(localStorage.getItem("savedMovies")) || []; // Get the saved movies from local storage
 
-	var carousel = document.querySelector("#saved-movies-carousel"); // Get the carousel element from the DOM. Replace '#saved-movies-carousel' with the actual selector for your carousel.
-
-	// Clear the carousel by removing all child elements
-	while (carousel.firstChild) {
-		carousel.removeChild(carousel.firstChild);
-	}
+	var carouselWrapper = document.getElementById("saved-movies-wrapper"); // Get the carousel wrapper element
+	carouselWrapper.innerHTML = ""; // Clear the existing carousel items
 
 	savedMovies.forEach((movie) => {
-		// For each movie, create an img element for the poster and a p element for the title, and append them to the carousel.
+		// Create the movie container
+		var movieContainer = document.createElement("div");
+		movieContainer.className = "carousel-movie";
+
+		// Create the movie poster image
 		var poster = document.createElement("img");
 		poster.src = movie.image;
 		poster.alt = movie.title;
-		poster.className = "carousel-poster"; // Add a class for styling the poster image. You can replace 'carousel-poster' with whatever class name you want.
+		poster.className = "carousel-poster";
 
+		// Create the movie title
 		var title = document.createElement("p");
 		title.textContent = movie.title;
-		title.className = "carousel-title"; // Add a class for styling the movie title. You can replace 'carousel-title' with whatever class name you want.
+		title.className = "carousel-title";
 
-		var movieContainer = document.createElement("div");
-		movieContainer.className = "carousel-movie"; // Add a class for styling the movie container. You can replace 'carousel-movie' with whatever class name you want.
-
+		// Append the poster and title to the movie container
 		movieContainer.appendChild(poster);
 		movieContainer.appendChild(title);
-		carousel.appendChild(movieContainer);
+
+		// Append the movie container to the carousel wrapper
+		carouselWrapper.appendChild(movieContainer);
 	});
 }

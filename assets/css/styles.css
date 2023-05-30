@@ -12,7 +12,7 @@ img {
 }
 
 h1 {
-    font-size: 150px;
+    font-size: 75px;
     color: var(--bright_red);
     text-align: center;
     font-family: 'Lobster', cursive;
@@ -68,6 +68,7 @@ button.active {
 header {
     display: flex;
     flex-direction: column;
+
 }
 
 .img-responsive {
@@ -118,7 +119,8 @@ header {
   background-repeat: no-repeat;
   width: 613px;
   height: 391px;
-cursor: grab;
+  /* I have spent over an hour trying to make this custom cursor appear. */
+  cursor: url(hand_stars46.png),!important;
 }
 
 .suggest-movie-btn img.cloud-animation {
@@ -129,7 +131,8 @@ cursor: grab;
   transform: translateX(-50%);
   width: 613px;
   height: 391px;
-  
+    /* I have spent over an hour trying to make this custom cursor appear. */
+  cursor: url(hand_stars46.png),!important;
 }
 
   
@@ -213,8 +216,49 @@ button:hover {
   
   #save-movie-btn:hover {
     background-color: #9c0d15;
-  }
 
+
+
+
+
+
+    /* CAROUSEL STUFF */
+    .carousel-movie {
+        flex: 0 0 auto;
+        width: 150px; /* Adjust the width of each movie container */
+        text-align: center;
+      }
+      
+      .carousel-poster {
+        width: 10%; /* Adjust the width of each movie poster image */
+        max-height: 10%; /* Limit the height of each movie poster image */
+        object-fit: contain; /* Maintain aspect ratio and fit within the container */
+      }
+      
+      .carousel-container {
+        margin-top: 2rem;
+        text-align: center;
+        overflow: hidden; /* Ensure the carousel is not wider than the viewport */
+      }
+      
+      .carousel-wrapper {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        margin-bottom: 1rem;
+        /* white-space: nowrap; Prevent the carousel items from wrapping */
+      }
+      
+      .carousel-scroll-btn {
+        border: none;
+        background: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        position: absolute; /* Position the scroll buttons */
+        top: 50%; /* Adjust the vertical position as needed */
+       
+      }
 
 /* Desktop size */
 @media (min-width: 992px) {
@@ -222,7 +266,6 @@ button:hover {
         display: block;
     }
 }
-
 /* Tablet size */
 @media (max-width: 768px) {
     h1 {
@@ -235,41 +278,6 @@ button:hover {
         font-size: 0.8rem;
     }
 }
-#saved-movies-carousel-container {
-    display: flex;
-    align-items: center;
-    height: 100%;
-  }
-  #saved-movies-carousel {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    align-items: center;
-    gap: 20px; /* Adjust the value as needed for spacing between carousel items */
-  }
-  
-  .carousel-movie {
-    /* flex: 0 0 auto;
-    width: 200px; /* Adjust the width of each movie container */
-    /* padding: 10px;  */
-    text-align: center;
-  }
-  
-  .carousel-poster {
-    width: 100%; /* Adjust the width of each movie poster image */
-    height: auto; /* Allow the height to adjust proportionally */
-    object-fit: cover; /* Maintain aspect ratio and cover the container */
-  }
-  
-  .carousel-title {
-    font-size: 2rem;
-    font-family: 'Lobster', cursive;
-    color: var(--light_yellow);
-    margin-top: 20px;
-    text-align: center;
-  }
-
-
 /* Mobile size */
 @media (max-width: 576px) {
     h1 {
