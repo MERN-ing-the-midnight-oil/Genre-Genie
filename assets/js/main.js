@@ -12,9 +12,69 @@ var genreButtons = document.querySelectorAll(".genre-button");
 var posterSection = document.querySelector("#poster-section");
 var saveMovieButton = document.createElement("button"); // Create a 'save this movie for later' button
 
+function displaySavedMovies() {
+	console.log("displaySavedMovies has been called");
+	var savedMoviesList = document.getElementById("saved-movies-list");
+	savedMoviesList.innerHTML = ""; // Clear the list so already displayed movies are not pushed again.
+	var savedMovies = JSON.parse(localStorage.getItem("savedMovies")) || []; // Get the saved movies from local storage
+	console.log(
+		"the number of saved movies in the savedMovies array locally is: ",
+		savedMovies.length
+	);
+	var savedMoviesList = document.getElementById("saved-movies-list"); // Get the list element
+
+	savedMovies.forEach((movie, index) => {
+		// Create the movie link
+		var movieLink = document.createElement("a");
+		movieLink.textContent = movie.title;
+		movieLink.href = "#";
+		movieLink.addEventListener("click", function (event) {
+			event.preventDefault();
+			displayMovieDetails(index);
+		});
+
+		// Append the movie link to the list
+		savedMoviesList.appendChild(movieLink);
+	});
+}
+displaySavedMovies(); //populate the list on page load if there is one
+
+function displayMovieDetails(index) {
+	var savedMovies = JSON.parse(localStorage.getItem("savedMovies")) || []; // Get the saved movies from local storage
+	var movie = savedMovies[index]; // Get the selected movie
+
+	// Get the movie details section elements
+	var detailsTitle = document.getElementById("details-title");
+	var detailsImage = document.getElementById("details-image");
+	var detailsRating = document.getElementById("details-rating");
+	var detailsSynopsis = document.getElementById("details-synopsis");
+
+	// Set the movie details
+	detailsTitle.textContent = movie.title;
+	detailsImage.src = movie.image;
+	detailsRating.textContent = movie.rating;
+	detailsSynopsis.textContent = movie.synopsis;
+
+	// Show the movie details section and hide the saved movies list
+	document.getElementById("movie-details").style.display = "block";
+	document.getElementById("saved-movies-list").style.display = "none";
+}
+
+function handleBackButtonClick() {
+	// Hide the movie details section and show the saved movies list
+	document.getElementById("movie-details").style.display = "none";
+	document.getElementById("saved-movies-list").style.display = "block";
+}
+
+// Add event listener to the "back" button
+document
+	.getElementById("back-btn")
+	.addEventListener("click", handleBackButtonClick);
+
 // Function to handle the page load event to load saved movies
 function handlePageLoad() {
 	// Call the function to display the saved movies in the carousel
+	console.log("running handlePageLoad and therefore displaySavedMoves");
 	displaySavedMovies();
 }
 // Event listener for the page load event
@@ -39,6 +99,7 @@ function getActiveGenres() {
 // Define a CSS class for the active state of the genre buttons
 const ACTIVE_CLASS = "active";
 
+//Updating the genre wishes
 function updateLocalStorage(event) {
 	var localGenreIds = JSON.parse(localStorage.getItem("genreIds")); // Array list of genre ids already in local storage
 	var genreID = event.target.dataset.genreid; // Get the genreID from the clicked button. DO NOT CHANGE "genreid" to "genreID" in a logical attempt to match the HTML data attribute. For some reason JS prefers being stupid.
@@ -193,6 +254,8 @@ function saveMovie() {
 	var currentMovie = {
 		title: document.querySelector("#original_title").textContent, // Get the current movie title from the DOM
 		image: document.querySelector(".poster").children[0].children[0].src, // Get the current movie poster image path from the DOM
+		rating: document.querySelector("#vote_average").textContent, // Get the current movie rating from the DOM
+		synopsis: document.querySelector("#overview").textContent, // Get the current movie synopsis from the DOM
 	};
 
 	var movieExists = savedMovies.find(
@@ -206,35 +269,4 @@ function saveMovie() {
 	console.log("Saved movies: " + JSON.stringify(savedMovies));
 	// Call the function to display the saved movies in the carousel
 	displaySavedMovies();
-}
-
-function displaySavedMovies() {
-	var savedMovies = JSON.parse(localStorage.getItem("savedMovies")) || []; // Get the saved movies from local storage
-
-	var carouselWrapper = document.getElementById("saved-movies-wrapper"); // Get the carousel wrapper element
-	carouselWrapper.innerHTML = ""; // Clear the existing carousel items
-
-	savedMovies.forEach((movie) => {
-		// Create the movie container
-		var movieContainer = document.createElement("div");
-		movieContainer.className = "carousel-movie";
-
-		// Create the movie poster image
-		var poster = document.createElement("img");
-		poster.src = movie.image;
-		poster.alt = movie.title;
-		poster.className = "carousel-poster";
-
-		// Create the movie title
-		var title = document.createElement("p");
-		title.textContent = movie.title;
-		title.className = "carousel-title";
-
-		// Append the poster and title to the movie container
-		movieContainer.appendChild(poster);
-		movieContainer.appendChild(title);
-
-		// Append the movie container to the carousel wrapper
-		carouselWrapper.appendChild(movieContainer);
-	});
 }

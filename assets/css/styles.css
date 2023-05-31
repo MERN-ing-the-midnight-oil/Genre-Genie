@@ -222,43 +222,6 @@ button:hover {
 
 
 
-    /* CAROUSEL STUFF */
-    .carousel-movie {
-        flex: 0 0 auto;
-        width: 150px; /* Adjust the width of each movie container */
-        text-align: center;
-      }
-      
-      .carousel-poster {
-        width: 10%; /* Adjust the width of each movie poster image */
-        max-height: 10%; /* Limit the height of each movie poster image */
-        object-fit: contain; /* Maintain aspect ratio and fit within the container */
-      }
-      
-      .carousel-container {
-        margin-top: 2rem;
-        text-align: center;
-        overflow: hidden; /* Ensure the carousel is not wider than the viewport */
-      }
-      
-      .carousel-wrapper {
-        display: flex;
-        overflow-x: auto;
-        scroll-behavior: smooth;
-        scroll-snap-type: x mandatory;
-        margin-bottom: 1rem;
-        /* white-space: nowrap; Prevent the carousel items from wrapping */
-      }
-      
-      .carousel-scroll-btn {
-        border: none;
-        background: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        position: absolute; /* Position the scroll buttons */
-        top: 50%; /* Adjust the vertical position as needed */
-       
-      }
 
 /* Desktop size */
 @media (min-width: 992px) {
@@ -290,3 +253,4 @@ button:hover {
         font-size: 0.7rem;
     }
 }
+  }

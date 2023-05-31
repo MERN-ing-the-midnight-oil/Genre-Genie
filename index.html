@@ -27,9 +27,9 @@
 			href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 			integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
 			crossorigin="anonymous" />
-		<link
+		<!-- <link
 			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+			href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" /> -->
 
 		<link
 			rel="stylesheet"
@@ -145,24 +145,30 @@
 							<img
 								id="poster-img"
 								src=""
-								style="width: 275px; height: 450px" />
+								style="width: 550px; height: 900px" />
 						</div>
 						<div class="movie-contents">
 							<h3 id="original_title"></h3>
 							<p id="overview"></p>
-							<p id="vote_average">Movie Rating:</p>
+							<h3> Movie Rating:
+							<p id="vote_average"></p></h3>
 						</div>
 						<section>
 						<button id="rub-again-btn" class="hidden">Rub the lamp again for a new suggestion</button>
 						<button id="save-movie-btn" class="hidden">Save this movie image below</button>
-					</section>
-					<div id="saved-movies-carousel-container" class="carousel-container">
-						<h2 class="carousel-title">Your saved movie images:</h2>
-						<div id="saved-movies-carousel" class="carousel">
-						  <!-- Carousel items will be dynamically added here -->
+
+						<div id="saved-movies">
+							<h2>Your Saved Movies:</h2>
+							<div id="saved-movies-list"></div>
 						</div>
-					  </div>
-			</section>
+						<div id="movie-details" style="display:none;">
+							<h2 id="details-title"></h2>
+							<img id="details-image" src="" alt="Movie poster">
+							<p>Rating: <span id="details-rating"></span></p>
+							<p>Synopsis: <span id="details-synopsis"></span></p>
+							<button id="back-btn">Back</button>
+						</div>
+						
 		</main>
 		<script src="./assets/js/main.js"></script>
 		<script src="assets/js/rubbing.js"></script>
