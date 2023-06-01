@@ -211,8 +211,29 @@ button:hover {
 .saved-movie-link:hover {
   color: var(--butter);
 }
-/*----------------------------------------------------------------
 
+/* styling and icons for the back buttons */
+.back-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  background-color: #2c2e3e;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin: 5px auto; /* center the button */
+  white-space: nowrap;
+  padding: 10px 20px; /* increase the size of the button */
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+.back-btn:hover {
+  background-color: darkgoldenrod;
+}
+.back-btn i {
+  margin-right: 10px;
+}
 
 
 

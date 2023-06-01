@@ -96,7 +96,7 @@ function updateTimer() {
 		frameCounter++; // Increment the frame counter
 
 		// Change the cloud image every x updates (roughly every half a second)
-		if (frameCounter % 10 === 0) {
+		if (frameCounter % 7 === 0) {
 			changeCloudImage();
 		}
 
