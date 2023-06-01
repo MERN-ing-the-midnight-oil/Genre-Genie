@@ -1,6 +1,5 @@
 var lamp = document.querySelector("#lamp");
 var pickGenre = document.querySelector(".pick-genre");
-var pickGenre = document.querySelector(".pick-genre");
 //  smoothly scroll to bring the 'pick-genre' section into view when user engages with pick-genre section.
 pickGenre.addEventListener("click", function () {
 	pickGenre.scrollIntoView({ behavior: "smooth" });
@@ -28,16 +27,27 @@ function displaySavedMovies() {
 		var movieLink = document.createElement("a");
 		movieLink.textContent = movie.title;
 		movieLink.href = "#";
+		movieLink.className = "saved-movie-link"; // Assign the class to the movie link
 		movieLink.addEventListener("click", function (event) {
 			event.preventDefault();
 			displayMovieDetails(index);
 		});
-
 		// Append the movie link to the list
 		savedMoviesList.appendChild(movieLink);
 	});
+	// Get all the saved movie links
+	var savedMovieLinks = document.querySelectorAll(".saved-movie-link");
+	// Add a click event listener to each saved movie link
+	savedMovieLinks.forEach((link, index) => {
+		link.addEventListener("click", (event) => {
+			// Prevent the default action
+			event.preventDefault();
+			// Call displayMovieDetails with the index of the clicked link
+			displayMovieDetails(index);
+		});
+	});
 }
-displaySavedMovies(); //populate the list on page load if there is one
+displaySavedMovies(); //call displaySavedMovies- populate the list on page load if there is one
 
 function displayMovieDetails(index) {
 	var savedMovies = JSON.parse(localStorage.getItem("savedMovies")) || []; // Get the saved movies from local storage
@@ -60,6 +70,14 @@ function displayMovieDetails(index) {
 	document.getElementById("saved-movies-list").style.display = "none";
 }
 
+// Add event listeners to the "back" buttons
+document
+	.getElementById("back-btn")
+	.addEventListener("click", handleBackButtonClick);
+document
+	.getElementById("back-btn-bottom")
+	.addEventListener("click", handleBackButtonClick);
+
 function handleBackButtonClick() {
 	// Hide the movie details section and show the saved movies list
 	document.getElementById("movie-details").style.display = "none";
@@ -73,8 +91,8 @@ document
 
 // Function to handle the page load event to load saved movies
 function handlePageLoad() {
-	// Call the function to display the saved movies in the carousel
-	console.log("running handlePageLoad and therefore displaySavedMoves");
+	// Call the function to display the saved movies
+	console.log("running handlePageLoad and therefore displaySavedMovies");
 	displaySavedMovies();
 }
 // Event listener for the page load event
@@ -99,7 +117,7 @@ function getActiveGenres() {
 // Define a CSS class for the active state of the genre buttons
 const ACTIVE_CLASS = "active";
 
-//Updating the genre wishes
+//Updating the genre
 function updateLocalStorage(event) {
 	var localGenreIds = JSON.parse(localStorage.getItem("genreIds")); // Array list of genre ids already in local storage
 	var genreID = event.target.dataset.genreid; // Get the genreID from the clicked button. DO NOT CHANGE "genreid" to "genreID" in a logical attempt to match the HTML data attribute. For some reason JS prefers being stupid.

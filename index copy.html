@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		
+		<meta charset="UTF-8" />
+		<meta
+			http-equiv="X-UA-Compatible"
+			content="IE=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&family=Rampart+One&display=swap"
+			rel="stylesheet" />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+			integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+			crossorigin="anonymous" />
+		<!-- <link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" /> -->
+
+		<link
+			rel="stylesheet"
+			href="./assets/css/styles.css" />
+
+		<title>Genre Genie</title>
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+
+	</head>
+
+	<body>
+		<header id="header">
+			<h1>Genre Genie</h1>
+
+			<h2 >"Where Genres Collide, Fantastic Flicks Reside!".</h2>
+			<div>
+				<img
+					id="characters"
+					src="./characters.png"
+					 />
+
+			</div>
+		</header>
+
+		<main>
+			<section class="pick-genre">
+					<h2 id="genre-text">
+					Choose multiple movie genres below and then rub the magic lamp for 4 seconds to collide your genre wishes.
+				</h2>
+				<div id="all-buttons">
+					<button class="genre-button" data-genreID="28">
+					  <i class="fas fa-helicopter"></i> Action
+					</button>
+					<button class="genre-button" data-genreID="12">
+					  <i class="fas fa-hiking"></i> Adventure
+					</button>
+					<button class="genre-button" data-genreID="16">
+					  <i class="fas fa-film"></i> Animation
+					</button>
+					<button class="genre-button" data-genreID="35">
+					  <i class="fas fa-laugh"></i> Comedy
+					</button>
+					<button class="genre-button" data-genreID="80">
+					  <i class="fas fa-briefcase"></i> Crime
+					</button>
+					<button class="genre-button" data-genreID="27">
+					  <i class="fas fa-skull"></i> Horror
+					</button>
+					<button class="genre-button" data-genreID="18">
+					  <i class="fas fa-theater-masks"></i> Drama
+					</button>
+					<button class="genre-button" data-genreID="10751">
+					  <i class="fas fa-users"></i> Family
+					</button>
+					<button class="genre-button" data-genreID="14">
+					  <i class="fas fa-dragon"></i> Fantasy
+					</button>
+					<button class="genre-button" data-genreID="36">
+					  <i class="fas fa-landmark"></i> History
+					</button>
+					<button class="genre-button" data-genreID="99">
+					  <i class="fas fa-video"></i> Documentary
+					</button>
+					<button class="genre-button" data-genreID="10402">
+					  <i class="fas fa-music"></i> Music
+					</button>
+					<button class="genre-button" data-genreID="9648">
+					  <i class="fas fa-question-circle"></i> Mystery
+					</button>
+					<button class="genre-button" data-genreID="10749">
+					  <i class="fas fa-heart"></i> Romance
+					</button>
+					<button class="genre-button" data-genreID="878">
+					  <i class="fas fa-rocket"></i> Sci-Fi
+					</button>
+					<button class="genre-button" data-genreID="10770">
+					  <i class="fas fa-tv"></i> TV-Movie
+					</button>
+					<button class="genre-button" data-genreID="53">
+					  <i class="fas fa-bolt"></i> Thriller
+					</button>
+					<button class="genre-button" data-genreID="10752">
+					  <i class="fas fa-shield-alt"></i> War
+					</button>
+					<button class="genre-button" data-genreID="37">
+						<i class="fas fa-horse-head"></i> Western
+					  </button>
+				  </div>
+				  
+
+				<div class="center">
+					<button id="suggest-movie-btn">
+						<img src="./lamp.png" alt="Lamp Icon" class="suggest-movie-btn cloud-animation">
+						Rub the lamp to collide your genres...
+					  </button>
+
+			
+					  </div>
+					  
+				</div>
+			</section>
+
+			<!-- recommended movie -->
+			<section
+				class="poster-section"
+				id="poster-section">
+				<section id="hideForNow">
+					<h2 id="your-movie">Your Movie:</h2>
+					<section
+						class="poster"
+						id="saveCapture">
+						<div id="poster-path">
+							<img
+								id="poster-img"
+								src=""
+								style="width: 550px; height: 900px" />
+						</div>
+						<div class="movie-contents">
+							<h3 id="original_title"></h3>
+							<p id="overview"></p>
+							<h3> Movie Rating:
+							<p id="vote_average"></p></h3>
+						</div>
+						<section>
+						<button id="rub-again-btn" class="hidden">Rub the lamp again for a new suggestion</button>
+						<button id="save-movie-btn" class="hidden">Save these movie details</button>
+							
+						<div id="saved-movies">
+							<h2>Your Saved Movies:</h2>
+							<div id="saved-movies-list"></div>
+						</div>
+						<div id="movie-details" style="display:none;">
+							<h2 id="details-title"></h2>
+							<button id="back-btn" style="display: none;">Back</button>
+							
+							<p>Rating: <span id="details-rating"></span></p>
+							<p>Synopsis: <span id="details-synopsis"></span></p>
+							<button id="back-btn-bottom">Back to Saved Movies List</button>
+							<img id="details-image" src="" alt="Movie poster">
+						</div>
+						
+						
+		</main>
+		<script src="./assets/js/main.js"></script>
+		<script src="assets/js/rubbing.js"></script>
+
+	</body>
+</html>

@@ -196,6 +196,29 @@ button:hover {
     background-color: darken(var(--bright_red), 10%); /* use darken() to make it darker when hovered over */
   }
   
+/*saved movie list of links */
+.saved-movie-link {
+  display: block;
+  font-size: 1.5rem;
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: var(--light_yellow);
+  text-decoration: none;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+.saved-movie-link:hover {
+  color: var(--butter);
+}
+/*----------------------------------------------------------------
+
+
+
+
+
+
+
   #save-movie-btn {
     /* Increasing button size */
     padding: 15px 30px;
