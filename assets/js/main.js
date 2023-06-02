@@ -212,8 +212,8 @@ function getTitleByGenre(genreString) {
 	const options = {
 		method: "GET",
 		headers: {
-			// "X-RapidAPI-Key": "ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790", //Rhys' full subscription to advanced movie search
-			"X-RapidAPI-Key": "5cec1b6fafmsh96cbe5417d10614p139e32jsn36f6496e92fe", //Jayden's limited API key
+			"X-RapidAPI-Key": "ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790", //Rhys' key, limited to 500 per month
+			//"X-RapidAPI-Key": "5cec1b6fafmsh96cbe5417d10614p139e32jsn36f6496e92fe", //Jayden's key, maxed out on june 2nd 2023
 			"X-RapidAPI-Host": "advanced-movie-search.p.rapidapi.com",
 		},
 	};

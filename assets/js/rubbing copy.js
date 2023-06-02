@@ -62,9 +62,6 @@ function handleMouseMove(event) {
 	if (!isMouseMoving) {
 		isMouseMoving = true;
 		resumeTimer();
-		// Change the associated text in the front end
-		document.getElementById("lamp-text").innerText =
-			"Rub the lamp to collide your genres...";
 	}
 
 	// Whenever mouse is moved, reset lastMouseMove time.
@@ -80,8 +77,6 @@ function handleMouseMove(event) {
 		if (Date.now() - lastMouseMove > 100) {
 			isMouseMoving = false;
 			pauseTimerFunc();
-			// Change the associated text in the front end
-			document.getElementById("lamp-text").innerText = "Keep rubbing the lamp!";
 		}
 	}, 100);
 }
