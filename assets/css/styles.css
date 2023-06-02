@@ -196,7 +196,36 @@ button:hover {
     background-color: darken(var(--bright_red), 10%); /* use darken() to make it darker when hovered over */
   }
   
+
 /*saved movie list of links */
+.movie-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;  /* or any suitable width */
+  padding: 10px 0;
+}
+.movie-container a {
+  margin-right: 10px; 
+}
+
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: var(--bright_red);
+  cursor: pointer;
+  margin-top: -16px; 
+}
+
+.delete-btn:hover {
+  color: var(--light_yellow);
+}
+
+.delete-btn i {
+  font-size: 1.2rem;
+}
+
 .saved-movie-link {
   display: block;
   font-size: 1.5rem;

@@ -20,6 +20,7 @@ function displaySavedMovies() {
 		"the number of saved movies in the savedMovies array locally is: ",
 		savedMovies.length
 	);
+	var savedMoviesList = document.getElementById("saved-movies-list"); // Get the list element
 
 	savedMovies.forEach((movie, index) => {
 		// Create the movie link
@@ -31,31 +32,9 @@ function displaySavedMovies() {
 			event.preventDefault();
 			displayMovieDetails(index);
 		});
-
-		// Create the delete button
-		var deleteButton = document.createElement("button");
-		deleteButton.innerHTML = '<i class="fa fa-trash"></i>'; // Add an icon (assuming you're using Font Awesome)
-		deleteButton.className = "delete-btn";
-		deleteButton.addEventListener("click", function (event) {
-			event.preventDefault();
-			// Remove movie from savedMovies array
-			savedMovies.splice(index, 1);
-			// Update local storage
-			localStorage.setItem("savedMovies", JSON.stringify(savedMovies));
-			// Call displaySavedMovies again to refresh the list
-			displaySavedMovies();
-		});
-
-		// Create a container div for movie link and delete button
-		var movieDiv = document.createElement("div");
-		movieDiv.className = "movie-container";
-		movieDiv.appendChild(movieLink);
-		movieDiv.appendChild(deleteButton);
-
-		// Append the container div to the list
-		savedMoviesList.appendChild(movieDiv);
+		// Append the movie link to the list
+		savedMoviesList.appendChild(movieLink);
 	});
-
 	// Get all the saved movie links
 	var savedMovieLinks = document.querySelectorAll(".saved-movie-link");
 	// Add a click event listener to each saved movie link
@@ -68,7 +47,6 @@ function displaySavedMovies() {
 		});
 	});
 }
-
 displaySavedMovies(); //call displaySavedMovies- populate the list on page load if there is one
 
 function displayMovieDetails(index) {

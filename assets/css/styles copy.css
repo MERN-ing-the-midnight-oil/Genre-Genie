@@ -12,7 +12,7 @@ img {
 }
 
 h1 {
-    font-size: 150px;
+    font-size: 75px;
     color: var(--bright_red);
     text-align: center;
     font-family: 'Lobster', cursive;
@@ -68,6 +68,7 @@ button.active {
 header {
     display: flex;
     flex-direction: column;
+
 }
 
 .img-responsive {
@@ -99,6 +100,7 @@ header {
   border: none;
   outline: none;
   margin-bottom: 50px;
+  
 }
 
 #suggest-movie-btn.hidden {
@@ -112,9 +114,13 @@ header {
   display: flex;
   align-items: flex-end;
   background-image: url(../../lamp.png);
-  background-size: 613px 391 px;
+  /* background-size: 613px 391 px; */
   background-position: bottom center;
   background-repeat: no-repeat;
+  width: 613px;
+  height: 391px;
+  /* I have spent over an hour trying to make this custom cursor appear. */
+  cursor: url(hand_stars46.png),!important;
 }
 
 .suggest-movie-btn img.cloud-animation {
@@ -125,6 +131,8 @@ header {
   transform: translateX(-50%);
   width: 613px;
   height: 391px;
+    /* I have spent over an hour trying to make this custom cursor appear. */
+  cursor: url(hand_stars46.png),!important;
 }
 
   
@@ -166,6 +174,97 @@ button:hover {
     box-shadow: 0px 0px 10px maroon;
 }
 
+#rub-again-btn {
+    /* Increasing button size */
+    padding: 15px 30px;
+    font-size: 24px;
+      
+    /* Centering the button */
+    display: block;
+    margin: 20px auto;
+    
+    /* Optional Styling */
+    background-color: var(--bright_red); /* use --bright_red here */
+    color: var(--white); /* if you want the text to be white */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+    
+  #rub-again-btn:hover {
+    background-color: darken(var(--bright_red), 10%); /* use darken() to make it darker when hovered over */
+  }
+  
+/*saved movie list of links */
+.saved-movie-link {
+  display: block;
+  font-size: 1.5rem;
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: var(--light_yellow);
+  text-decoration: none;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+.saved-movie-link:hover {
+  color: var(--butter);
+}
+
+/* styling and icons for the back buttons */
+.back-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  background-color: #2c2e3e;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin: 5px auto; /* center the button */
+  white-space: nowrap;
+  padding: 10px 20px; /* increase the size of the button */
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+.back-btn:hover {
+  background-color: darkgoldenrod;
+}
+.back-btn i {
+  margin-right: 10px;
+}
+
+
+
+
+
+
+  #save-movie-btn {
+    /* Increasing button size */
+    padding: 15px 30px;
+    font-size: 24px;
+    
+    /* Centering the button */
+    display: block;
+    margin: 20px auto;
+    
+    /* Optional Styling */
+    background-color: var(--bright_red);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #save-movie-btn:hover {
+    background-color: #9c0d15;
+
+
+
+
+
 
 
 /* Desktop size */
@@ -174,7 +273,6 @@ button:hover {
         display: block;
     }
 }
-
 /* Tablet size */
 @media (max-width: 768px) {
     h1 {
@@ -187,7 +285,6 @@ button:hover {
         font-size: 0.8rem;
     }
 }
-
 /* Mobile size */
 @media (max-width: 576px) {
     h1 {
@@ -200,3 +297,4 @@ button:hover {
         font-size: 0.7rem;
     }
 }
+  }
