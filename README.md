@@ -1,25 +1,57 @@
-# Movie-Recs
+# Genre-Genie
 
-## Description 
-A simple movie recommender where a user selects up to 3 genres, then has a movie or TV show recommended to them based on the most popular results within those specified genres. They are also given a link they can click to watch the trailer. They can save any result, and at a later time, pull it back up with a simple click of a button.
+Genre-Genie is a web application that allows users to get a unique movie recommendation based on the collision of different movie genres. This project highlights advanced frontend skills including the use of HTML, JavaScript, CSS, API integration, and complex utilization of local storage.
 
-We built this because we felt there weren't any good movie recommender apps or websites, and felt we could create a simple-to-use website with a smooth interface.
+## Table of Contents
 
-## Usage 
+1. [Background](#background)
+2. [Features](#features)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [Contribute](#contribute)
+6. [Credits](#credits)
+7. [Contact](#contact)
 
-Select remote to reveal genres. Select up to 3 genres, then click "Suggest My Movie!". Doing this will reveal a suggested movie for you. If you wish to save that movie for future reference, select "Save Movie". You can show this saved movie at any time by clicking "Saved movie".
+## Background
 
-![image](https://user-images.githubusercontent.com/110741444/201809420-0ea28853-8e7f-42e8-9b0d-7cdfe50f2240.png)
+This project is a fork from a group project, [Movie Recs](https://hayni100.github.io/Movie-Recs/). The initial part of the original Movie Recs project that I worked on involved handling API calls. However, Genre-Genie has been greatly expanded upon, with almost all of the code updated and many features added, resulting in an application that is significantly more complex than the original.
 
-https://hayni100.github.io/Movie-Recs/
+The project showcases a clear understanding of frontend development, particularly in the use of HTML, JavaScript, CSS, and API calls. It also demonstrates proficiency in using local storage.
+
+The API used in this project is Advanced Movie Search, which is leveraged to provide the unique movie suggestions based on the genres selected by the user.
+
+## Features
+
+- Selection of various movie genres by toggling genre buttons.
+- A 'Magic Lamp' that when rubbed (mouse click and movement over the lamp for an accumulated time of 4 seconds) will provide a movie recommendation fitting the selected genres.
+- An animated magic lamp that reacts to the user's interaction.
+- Saved Movies List - Functional links to movie information saved in local storage and associated delete buttons.
+- All images (except the Magic Lamp button) on the website were created by Rhys Smoker.
+
+## Installation
+
+Since this is a web application, it doesn't require any installation. You can visit the application [here](https://mern-ing-the-midnight-oil.github.io/Genre-Genie/).
+
+## Usage
+
+1. Visit the website.
+2. Toggle your desired movie genres.
+3. Rub the magic lamp for an accumulated time of 4 seconds.
+4. Receive your movie recommendation.
+5. Repeat the process for new recommendations or delete any you don't want from the saved movies list.
+
+## Contribute
+
+Contributions to Genre-Genie are welcomed. If you have any ideas for improvements or notice any bugs, please open an issue. If you'd like to contribute to the project directly, please email r.smoker@gmail.com.
 
 ## Credits
 
-Rhys Smoker - Created the code that fetched API information and made it available for display on the front page.
+This project was created by Rhys Smoker. It was originally forked from a project called Movie Recs, which can be found [here](https://hayni100.github.io/Movie-Recs/).
 
-Nicole Cohen - Collaborated with Haein to create a beautiful interface and smooth user experience.
+## Contact
 
-Haein Kim - Created Github repository, deployed page, and collaborated with Nicole to ensure the user experience was smooth.
+If you have any questions, concerns or you would like to contribute to the project, please contact me at r.smoker@gmail.com or raise an issue on this project.
 
-Jayden Chapman - Created local storage for saved movie and managed git merge conflicts.
+---
 
+© 2023 Rhys Smoker. All rights reserved.

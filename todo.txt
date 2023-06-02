@@ -1,7 +1,0 @@
-Make the movie recommendations hidden until the lamp is rubbed and there is an animation of a cloud. the cloud could just be the same cloud rotated every second that the user rubs the lamp. the cursor could become a hand while its over the lamp. then "poof" the recommendation is revealed. 
-
-change the favicon to rhys's favicon 
-
-work on saving movies in a carosol presentation of movie recommendations
-
-deploy to heroku
