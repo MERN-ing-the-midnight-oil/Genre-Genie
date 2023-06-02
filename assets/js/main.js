@@ -235,7 +235,7 @@ function getTitleByGenre(genreString) {
 }
 var resetButton = document.createElement("button"); // Create a reset button
 resetButton.textContent = "Rub the lamp again for a new suggestion";
-resetButton.id = "reset-btn";
+resetButton.id = "rub-again-btn";
 
 // Function to handle the click event on the "rub-again-btn" button
 function handleRubAgainClick() {
@@ -248,9 +248,7 @@ function handleRubAgainClick() {
 
 	// Hide the movie suggestion section
 	const posterSection = document.getElementById("poster-section");
-	const hideForNowSection = document.getElementById("hideForNow");
 	posterSection.classList.add("hidden");
-	hideForNowSection.classList.add("hidden");
 
 	// Show the genre selection section
 	const pickGenreSection = document.querySelector(".pick-genre");
