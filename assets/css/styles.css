@@ -6,6 +6,19 @@
     --background_color: #1B1D2A;
     background-color: var(--background_color);
 }
+#header h1 {
+  font-size: 2.5em; /* Make your main title bigger */
+}
+
+#header h2 {
+  font-size: 1.5em; /* Make your subheaders a bit smaller than the title */
+  margin-top: -10px; /* Decrease the space between title and subheaders */
+}
+
+.pick-genre h2 {
+  font-size: 0.9em; /* Make the instructions text smaller */
+}
+
 img {
   display: block;
   margin: 0 auto;
