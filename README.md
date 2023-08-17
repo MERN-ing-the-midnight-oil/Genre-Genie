@@ -23,10 +23,10 @@ The API used in this project is Advanced Movie Search, which is leveraged to pro
 ## Features
 
 - Selection of various movie genres by toggling genre buttons.
+- API calls to "mdblist" and "advanced movie search"
 - A 'Magic Lamp' that when rubbed (mouse click and movement over the lamp for an accumulated time of 4 seconds) will provide a movie recommendation fitting the selected genres.
-- An animated magic lamp that reacts to the user's interaction.
 - Saved Movies List - Functional links to movie information saved in local storage and associated delete buttons.
-- All images (except the Magic Lamp button) on the website were created by Rhys Smoker.
+- All images (except the Magic Lamp button) on the website were created by me, Rhys Smoker.
 
 ## Installation
 
@@ -42,15 +42,15 @@ Since this is a web application, it doesn't require any installation. You can vi
 
 ## Contribute
 
-Contributions to Genre-Genie are welcomed. If you have any ideas for improvements or notice any bugs, please open an issue. If you'd like to contribute to the project directly, please email r.smoker@gmail.com.
+Contributions to Genre-Genie are welcomed. If you have any ideas for improvements or notice any bugs, please open an issue. If you'd like to contribute to the project directly, please email merning.the.midnight.oil@gmail.com.
 
 ## Credits
 
-This project was created by Rhys Smoker. It was originally forked from a project called Movie Recs, which can be found [here](https://hayni100.github.io/Movie-Recs/).
+This project was created by Rhys Smoker. It was originally forked from a class assignment called Movie Recs, which can be found [here](https://hayni100.github.io/Movie-Recs/).
 
 ## Contact
 
-If you have any questions, concerns or you would like to contribute to the project, please contact me at r.smoker@gmail.com or raise an issue on this project.
+If you have any questions, concerns or you would like to contribute to the project, please contact me at merning.the.midnight.oil@gmail.com or raise an issue on this project.
 
 ---
 

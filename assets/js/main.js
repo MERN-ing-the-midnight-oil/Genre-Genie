@@ -249,12 +249,93 @@ function getTitleByGenre(genreString) {
 				.querySelector(".poster")
 				.children[0].children[0].setAttribute("src", posterPath);
 			//stretch goal for getting the poster path from getDetailedResponse query to stream a preview for the suggested movie
-			// console.log(
-			// 	"About to give the suggested movie_id to Advanced Movie Search getDetailedResponse"
-			// );
-			// getDetailedResponse(movie_id);
+			console.log(
+				"About to give the suggested movie_id to Advanced Movie Search getDetailedResponse"
+			);
+			getDetailedResponse(movie_id);
 		});
 }
+//getDetailedResponse will take the regular movie id and give a IMDB movie ID that we need for getStreamsbyIMDBId
+function getDetailedResponse(movie_id) {
+	var detailedURL =
+		"https://advanced-movie-search.p.rapidapi.com/movies/getdetails?movie_id=" +
+		movie_id;
+	const options3 = {
+		method: "GET",
+		headers: {
+			"X-RapidAPI-Key": "5cec1b6fafmsh96cbe5417d10614p139e32jsn36f6496e92fe", //Jayden's limited API key
+			"X-RapidAPI-Host": "advanced-movie-search.p.rapidapi.com",
+		},
+	};
+	fetch(detailedURL, options3)
+		.then(function (response) {
+			if (!response.ok) {
+				throw response.json();
+			}
+			return response.json();
+		})
+		.then(function (detailedObject) {
+			//find the data we need in the object
+			console.log(detailedObject);
+			var IMDBID = detailedObject.imdb_id;
+
+			//if the IMDBID is null, then start over!
+			console.log("The IMDBID IS :" + IMDBID);
+			console.log(
+				"ABOUT TO START THE FETCH FUNCTION THAT GETS STREAM SOURCES FROM MBDLIST USING MBDID"
+			);
+			getStreamsByIMDBID(IMDBID); //call the final function that gets streaming data given an IMDBID.
+		});
+}
+function getStreamsByIMDBID(IMDBID) {
+	var getByIMDBidURL = "https://mdblist.p.rapidapi.com/?i=" + IMDBID;
+
+	const options = {
+		method: "GET",
+		headers: {
+			"X-RapidAPI-Key": "5cec1b6fafmsh96cbe5417d10614p139e32jsn36f6496e92fe", //Jayden's limited API key
+			"X-RapidAPI-Host": "mdblist.p.rapidapi.com",
+		},
+	};
+
+	console.log("Fetching data from: ", getByIMDBidURL);
+
+	fetch(getByIMDBidURL, options)
+		.then(function (response) {
+			console.log("Response received from fetch: ", response);
+			if (!response.ok) {
+				console.log("Response is not OK. Throwing error...");
+				throw response.json();
+			}
+			console.log("Response is OK. Converting to JSON...");
+			return response.json();
+		})
+		.then(function (imdbObject) {
+			console.log("Received JSON data: ", imdbObject);
+
+			if (imdbObject && imdbObject.trailer) {
+				var movieDetailsSection = document.querySelector("#movie-details");
+				var streamingContent = document.createElement("a"); // Create new 'a' element
+				streamingContent.id = "streaming-content"; // Assign id
+				streamingContent.textContent = "Click to Watch Trailer"; // Set link text
+				streamingContent.href = imdbObject.trailer; // Set the href to the trailer URL
+
+				streamingContent.addEventListener("click", function (event) {
+					event.preventDefault();
+					window.open(imdbObject.trailer); // Open the trailer URL
+				});
+
+				movieDetailsSection.appendChild(streamingContent); // Append the link to the movie details section
+			} else {
+				console.log("No trailer available for this movie");
+			}
+		})
+		.catch(function (error) {
+			console.log("An error occurred during fetch: ", error);
+		});
+}
+
+
 var resetButton = document.createElement("button"); // Create a reset button
 resetButton.textContent = "Rub the lamp again for a new suggestion";
 resetButton.id = "rub-again-btn";
