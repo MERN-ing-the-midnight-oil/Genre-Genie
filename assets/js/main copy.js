@@ -326,14 +326,6 @@ function getStreamsByIMDBID(IMDBID) {
 				});
 
 				movieDetailsSection.appendChild(streamingContent); // Append the link to the movie details section
-
-				// Add the trailer link to the poster section:
-				const trailerPlaceholder = document.getElementById(
-					"trailer-placeholder"
-				);
-				const clonedStreamingContent = streamingContent.cloneNode(true);
-				trailerPlaceholder.innerHTML = ""; // Clear any previous content
-				trailerPlaceholder.appendChild(clonedStreamingContent); // Append the cloned link to the trailer-placeholder
 			} else {
 				console.log("No trailer available for this movie");
 			}

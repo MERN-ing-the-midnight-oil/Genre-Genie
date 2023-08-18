@@ -279,19 +279,35 @@ button:hover {
 
 
 
+#movie-details {
+  text-align: center;
+}
 
+.streaming-content {
+  font-size: 24px;   /* Adjust to your preference */
+  color: var(--light_yellow);
+  font-weight: bold;
+  display: inline-block;
+  margin: 20px 0;    /* Adjust margin for spacing */
+  padding: 10px;
+  border-radius: 8px;
+  background-color: var(--bright_red);
+  transition: background-color 0.3s ease;
+}
+
+.streaming-content:hover {
+  background-color: #9c0d15;
+  text-decoration: none;
+}
 
 
   #save-movie-btn {
-    /* Increasing button size */
     padding: 15px 30px;
     font-size: 24px;
     
-    /* Centering the button */
     display: block;
     margin: 20px auto;
     
-    /* Optional Styling */
     background-color: var(--bright_red);
     color: white;
     border: none;
@@ -302,8 +318,6 @@ button:hover {
   
   #save-movie-btn:hover {
     background-color: #9c0d15;
-
-
 
 
 

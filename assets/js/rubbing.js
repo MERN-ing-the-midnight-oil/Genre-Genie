@@ -81,7 +81,8 @@ function handleMouseMove(event) {
 			isMouseMoving = false;
 			pauseTimerFunc();
 			// Change the associated text in the front end
-			document.getElementById("lamp-text").innerText = "Keep rubbing the lamp!";
+			document.getElementById("lamp-text").innerText =
+				"Keep rubbing the lamp! (move cursor over image)";
 		}
 	}, 100);
 }
