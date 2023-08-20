@@ -55,18 +55,6 @@ function displaySavedMovies() {
 		// Append the container div to the list
 		savedMoviesList.appendChild(movieDiv);
 	});
-
-	// Get all the saved movie links
-	var savedMovieLinks = document.querySelectorAll(".saved-movie-link");
-	// Add a click event listener to each saved movie link
-	savedMovieLinks.forEach((link, index) => {
-		link.addEventListener("click", (event) => {
-			// Prevent the default action
-			event.preventDefault();
-			// Call displayMovieDetails with the index of the clicked link
-			displayMovieDetails(index);
-		});
-	});
 }
 
 displaySavedMovies(); //call displaySavedMovies- populate the list on page load if there is one
