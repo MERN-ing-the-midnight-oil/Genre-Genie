@@ -317,7 +317,7 @@ function getStreamsByIMDBID(IMDBID) {
 				var movieDetailsSection = document.querySelector("#movie-details");
 				var streamingContent = document.createElement("a"); // Create new 'a' element
 				streamingContent.id = "streaming-content"; // Assign id
-				streamingContent.textContent = "Click to Watch Saved Movie Trailer"; // Set link text
+				streamingContent.textContent = "Click to Watch Movie Trailer"; // Set link text
 				streamingContent.href = imdbObject.trailer; // Set the href to the trailer URL
 
 				streamingContent.addEventListener("click", function (event) {
@@ -336,6 +336,22 @@ function getStreamsByIMDBID(IMDBID) {
 				trailerPlaceholder.appendChild(clonedStreamingContent); // Append the cloned link to the trailer-placeholder
 			} else {
 				console.log("No trailer available for this movie");
+
+				// Create a text element with the error message
+				var errorMessage = document.createElement("p");
+				errorMessage.textContent =
+					"Sorry, I couldn't conjure a trailer for this title.";
+
+				// Append the error message to the movie details section
+				movieDetailsSection.appendChild(errorMessage);
+
+				// Add the error message to the poster section
+				const trailerPlaceholder = document.getElementById(
+					"trailer-placeholder"
+				);
+				const clonedErrorMessage = errorMessage.cloneNode(true);
+				trailerPlaceholder.innerHTML = ""; // Clear any previous content
+				trailerPlaceholder.appendChild(clonedErrorMessage);
 			}
 		})
 		.catch(function (error) {
