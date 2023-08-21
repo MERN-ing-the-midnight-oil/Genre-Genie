@@ -68,12 +68,23 @@ function displayMovieDetails(index) {
 	var detailsImage = document.getElementById("details-image");
 	var detailsRating = document.getElementById("details-rating");
 	var detailsSynopsis = document.getElementById("details-synopsis");
+	var trailerLink = document.querySelector("#streaming-content"); // New line to get the trailer link element
 
 	// Set the movie details
 	detailsTitle.textContent = movie.title;
 	detailsImage.src = movie.image;
 	detailsRating.textContent = movie.rating;
 	detailsSynopsis.textContent = movie.synopsis;
+
+	// Set the trailer URL (only if it exists for the movie)
+	if (trailerLink && movie.trailer) {
+		trailerLink.href = movie.trailer;
+		trailerLink.textContent = "Click to Watch Movie Trailer";
+	} else if (trailerLink) {
+		// Handle case where there's no trailer for the movie
+		trailerLink.href = "#";
+		trailerLink.textContent = "Trailer not available";
+	}
 
 	// Show the movie details section and hide the saved movies list
 	document.getElementById("movie-details").style.display = "block";
@@ -93,11 +104,6 @@ function handleBackButtonClick() {
 	document.getElementById("movie-details").style.display = "none";
 	document.getElementById("saved-movies-list").style.display = "block";
 }
-
-// Add event listener to the "back" button
-document
-	.getElementById("back-btn")
-	.addEventListener("click", handleBackButtonClick);
 
 // Function to handle the page load event to load saved movies
 function handlePageLoad() {
@@ -128,9 +134,9 @@ function getActiveGenres() {
 const ACTIVE_CLASS = "active";
 
 //Updating the genre
-function updateLocalStorage(event) {
+function updateGenresInStorage(event) {
 	var localGenreIds = JSON.parse(localStorage.getItem("genreIds")); // Array list of genre ids already in local storage
-	var genreID = event.target.dataset.genreid; // Get the genreID from the clicked button. DO NOT CHANGE "genreid" to "genreID" in a logical attempt to match the HTML data attribute. For some reason JS prefers being stupid.
+	var genreID = event.target.dataset.genreid; // Get the genreID from the clicked button. DO NOT CHANGE "genreid" to "genreID" in a logical attempt to match the HTML data attribute.
 
 	var index = localGenreIds.indexOf(genreID); //check if the genre button has already been clicked an odd number of times (is deselected now)
 	if (index > -1) {
@@ -161,7 +167,7 @@ buttonContainerEl.addEventListener("click", (event) => {
 		}
 
 		// Update the genre IDs in local storage
-		updateLocalStorage(event);
+		updateGenresInStorage(event);
 	}
 });
 
@@ -188,7 +194,6 @@ function suggestMovie() {
 	posterSection.style.display = "block";
 }
 
-document.addEventListener("suggestMovieEvent", suggestMovie);
 //Gets movie titles from the API
 
 function getTitleByGenre(genreString) {
@@ -200,6 +205,7 @@ function getTitleByGenre(genreString) {
 	const options = {
 		method: "GET",
 		headers: {
+			//normally I would use a backend to interact with an API, but I don't care about this API key, I can't think of how a bad actor could abuse it.
 			"X-RapidAPI-Key": "ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790", //Rhys' key, limited to 500 per month
 			//"X-RapidAPI-Key": "5cec1b6fafmsh96cbe5417d10614p139e32jsn36f6496e92fe", //Jayden's key, maxed out on june 2nd 2023
 			"X-RapidAPI-Host": "advanced-movie-search.p.rapidapi.com",
@@ -380,23 +386,27 @@ rubAgainBtn.addEventListener("click", handleRubAgainClick);
 document.getElementById("save-movie-btn").addEventListener("click", saveMovie);
 
 function saveMovie() {
-	var savedMovies = JSON.parse(localStorage.getItem("savedMovies")) || []; // Array list of saved movies already in local storage
+	var trailerElement = document.querySelector("#streaming-content");
+	var trailerUrl = trailerElement ? trailerElement.href : null;
+
+	var savedMovies = JSON.parse(localStorage.getItem("savedMovies")) || [];
 	var currentMovie = {
-		title: document.querySelector("#original_title").textContent, // Get the current movie title from the DOM
-		image: document.querySelector(".poster").children[0].children[0].src, // Get the current movie poster image path from the DOM
-		rating: document.querySelector("#vote_average").textContent, // Get the current movie rating from the DOM
-		synopsis: document.querySelector("#overview").textContent, // Get the current movie synopsis from the DOM
+		title: document.querySelector("#original_title").textContent,
+		image: document.querySelector(".poster").children[0].children[0].src,
+		rating: document.querySelector("#vote_average").textContent,
+		synopsis: document.querySelector("#overview").textContent,
+		trailer: trailerUrl,
 	};
 
 	var movieExists = savedMovies.find(
 		(movie) => movie.title === currentMovie.title
 	);
 	if (!movieExists) {
-		savedMovies.push(currentMovie); // Add the current movie to the array if it is not already there
+		savedMovies.push(currentMovie);
 	}
 
-	localStorage.setItem("savedMovies", JSON.stringify(savedMovies)); // Update the savedMovies in local storage with the new movie
+	localStorage.setItem("savedMovies", JSON.stringify(savedMovies));
 	console.log("Saved movies: " + JSON.stringify(savedMovies));
-	// Call the function to display the saved movies in the carousel
+
 	displaySavedMovies();
 }
