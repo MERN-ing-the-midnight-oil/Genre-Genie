@@ -28,10 +28,12 @@ function displaySavedMovies() {
 		movieLink.href = "#";
 		movieLink.className = "saved-movie-link"; // Assign the class to the movie link
 		movieLink.addEventListener("click", function (event) {
+			console.log(
+				`Clicked movie link for: ${movie.title} with index: ${index}`
+			);
 			event.preventDefault();
 			displayMovieDetails(index);
 		});
-
 		// Create the delete button
 		var deleteButton = document.createElement("button");
 		deleteButton.innerHTML = '<i class="fa fa-trash"></i>'; // Add an icon (assuming you're using Font Awesome)
@@ -62,7 +64,9 @@ displaySavedMovies(); //call displaySavedMovies- populate the list on page load 
 function displayMovieDetails(index) {
 	var savedMovies = JSON.parse(localStorage.getItem("savedMovies")) || []; // Get the saved movies from local storage
 	var movie = savedMovies[index]; // Get the selected movie
-
+	console.log(
+		`Displaying details for movie: ${movie.title} at index: ${index}`
+	);
 	// Get the movie details section elements
 	var detailsTitle = document.getElementById("details-title");
 	var detailsImage = document.getElementById("details-image");
@@ -315,6 +319,9 @@ function getStreamsByIMDBID(IMDBID) {
 				streamingContent.href = imdbObject.trailer; // Set the href to the trailer URL
 
 				streamingContent.addEventListener("click", function (event) {
+					console.log(
+						`Clicked streaming content for movie with IMDBID: ${imdbObject.trailer}`
+					);
 					event.preventDefault();
 					window.open(imdbObject.trailer); // Open the trailer URL
 				});
